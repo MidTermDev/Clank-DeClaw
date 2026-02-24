@@ -2,6 +2,16 @@
 
 **1,000 claw-machine robot PFPs** with an MPL-404 hybrid bridge on Solana mainnet.
 
+## Deployed Addresses
+
+| Account | Address |
+|---------|---------|
+| Collection | `3L4KykJihyLqYNTrSx7bQf3mADLJ14Ef145p7qx8CNCH` |
+| Escrow PDA | `HDKAQxFVSq9HofTmRt5fRZKMjUEUHtKYXcqgurte3UEq` |
+| CLAW Token | `b2kxZYNewjsogqkF8RoR5MF9SXYEfpkyMmvvXpfCLAW` |
+| Images (IPFS) | `bafybeidgrbt7retu2vj4lq7e32u5cqrlbtcfugmkkszgt7x42zgkdchux4` |
+| Metadata (IPFS) | `bafybeian5z6oxfrz2iv52j2f7fnaiotpi4aocnn3d5uxop7a36y5akj47i` |
+
 ## Overview
 
 DeClaw is a generative NFT collection featuring unique claw-machine robot characters. Each NFT is composed of 8 layered traits, programmatically generated and composited into 1,000 unique PFP images.
@@ -24,10 +34,10 @@ src/
   generate-metadata.ts — Metaplex-standard JSON metadata
   upload-metadata.ts   — Pinata IPFS metadata upload
   create-collection.ts — Create Core collection on mainnet
-  mint-nfts.ts         — Batch mint with progress tracking + resume
+  mint-nfts.ts         — Concurrent mint (15x parallelism, resume-safe)
   init-escrow.ts       — MPL-404 escrow initialization
-  fund-escrow.ts       — Transfer NFTs to escrow PDA
-  verify.ts            — End-to-end verification
+  fund-escrow.ts       — Concurrent transfer to escrow PDA (resume-safe)
+  verify.ts            — End-to-end verification (28 checks)
 ```
 
 ## Trait System
@@ -50,12 +60,12 @@ src/
 - [x] Phase 1: Project setup with dependencies and structure
 - [x] Phase 2: Trait system and programmatic art layers (65 layer PNGs)
 - [x] Phase 3: Compose 1,000 unique images (seeded PRNG, deduplicated)
-- [x] Phase 4: Upload images to Pinata IPFS (folder upload, CID saved)
-- [x] Phase 5: Generate & upload metadata (Metaplex-standard JSON, Pinata IPFS)
-- [x] Phase 6: Create Core collection on mainnet (scripts ready, needs wallet funding)
-- [x] Phase 7: Batch mint 1,000 NFTs (scripts ready, needs wallet funding)
-- [x] Phase 8: MPL-404 escrow init and fund (scripts ready, needs wallet funding)
-- [x] Phase 9: Verification and documentation
+- [x] Phase 4: Upload images to Pinata IPFS
+- [x] Phase 5: Generate & upload metadata (Metaplex-standard JSON)
+- [x] Phase 6: Create Core collection on mainnet
+- [x] Phase 7: Batch mint 1,000 NFTs (15x concurrent, ~14.6 min)
+- [x] Phase 8: MPL-404 escrow init and fund (1,000 NFTs deposited, ~14.8 min)
+- [x] Phase 9: Verification (28/28 checks passed) and documentation
 
 ## Scripts
 
@@ -84,7 +94,7 @@ npm run verify              # End-to-end verification
 2. Configure `.env`:
    ```
    PINATA_JWT=your_jwt
-   PINATA_GATEWAY=your_gateway
+   PINATA_GATEWAY=gateway.pinata.cloud
    RPC_URL=your_rpc_url
    KEYPAIR_PATH=./keypair.json
    ```
@@ -111,6 +121,6 @@ The escrow links the DeClaw collection to the CLAW token:
 - **Swap rate**: 1,000,000 CLAW (1M) = 1 NFT
 - **Path**: 1 (static NFTs, no metadata rerolling)
 - **Fees**: 0 (no token fee, no SOL fee)
-- **Bidirectional**: Users can swap CLAW→NFT and NFT→CLAW
+- **Bidirectional**: Users can swap CLAW->NFT and NFT->CLAW
 
-After funding, any holder of 1M+ CLAW tokens can swap for a random DeClaw NFT from the escrow, and any DeClaw NFT holder can swap back for 1M CLAW.
+All 1,000 NFTs are deposited in the escrow. Any holder of 1M+ CLAW tokens can swap for a random DeClaw NFT, and any DeClaw NFT holder can swap back for 1M CLAW.
