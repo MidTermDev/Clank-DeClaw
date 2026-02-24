@@ -1,0 +1,52 @@
+{
+  "name": "DeClaw #764",
+  "symbol": "DCLAW",
+  "description": "DeClaw #764 — A unique claw-machine robot from the DeClaw collection. 1,000 generative PFPs with MPL-404 hybrid bridge on Solana.",
+  "image": "https://your_gateway_here/ipfs/PLACEHOLDER_CID/764.png",
+  "external_url": "https://github.com/MidTermDev/Clank-DeClaw",
+  "seller_fee_basis_points": 500,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Cyber Green"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Chrome"
+    },
+    {
+      "trait_type": "Chassis",
+      "value": "Spiked"
+    },
+    {
+      "trait_type": "Claw",
+      "value": "Suction Cup"
+    },
+    {
+      "trait_type": "Visor",
+      "value": "Cyclops"
+    },
+    {
+      "trait_type": "Accessory",
+      "value": "Crown"
+    },
+    {
+      "trait_type": "Aura",
+      "value": "Rainbow"
+    },
+    {
+      "trait_type": "Expression",
+      "value": "Neutral"
+    }
+  ],
+  "properties": {
+    "category": "image",
+    "files": [
+      {
+        "uri": "https://your_gateway_here/ipfs/PLACEHOLDER_CID/764.png",
+        "type": "image/png"
+      }
+    ],
+    "creators": []
+  }
+}
