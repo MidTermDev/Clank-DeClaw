@@ -31,7 +31,7 @@ The collection uses Metaplex Core (MPL-404) with a hybrid escrow bridge, allowin
 
 - [x] Phase 1: Project setup with dependencies and structure
 - [x] Phase 2: Trait system and programmatic art layers (65 layer PNGs)
-- [ ] Phase 3: Compose 1,000 unique images
+- [x] Phase 3: Compose 1,000 unique images (seeded PRNG, deduplicated)
 - [ ] Phase 4: Upload images to Pinata IPFS
 - [ ] Phase 5: Generate & upload metadata
 - [ ] Phase 6: Create Core collection on mainnet
