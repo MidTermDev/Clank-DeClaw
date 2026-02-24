@@ -23,10 +23,15 @@ interface UmiState {
 
 const NOOP_PUBKEY = publicKey("11111111111111111111111111111111");
 
+function getRpcEndpoint(): string {
+  if (typeof window !== "undefined") {
+    return `${window.location.origin}${RPC_URL}`;
+  }
+  return "https://api.mainnet-beta.solana.com";
+}
+
 function createConfiguredUmi(): Umi {
-  const endpoint =
-    typeof window !== "undefined" ? RPC_URL : "https://api.mainnet-beta.solana.com";
-  return createUmi(endpoint)
+  return createUmi(getRpcEndpoint())
     .use(mplHybrid())
     .use(mplCore())
     .use(mplToolbox())
