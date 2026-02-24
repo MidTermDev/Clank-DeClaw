@@ -6,7 +6,7 @@ const TAGLINES = [
   "Insert tokens. Try your luck.",
   "Every robot wants to escape.",
   "The claw chooses who it releases.",
-  "1,000,000 CLAW. One chance.",
+  "1,000,000 DeClaws. One chance.",
   "Provably fair. Randomly captured.",
 ];
 
@@ -66,7 +66,7 @@ export default function HeroSection() {
           </div>
           <div className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2">
             <span className="text-gray-500">Swap Rate</span>
-            <span className="font-mono font-bold text-gray-900">1M CLAW</span>
+            <span className="font-mono font-bold text-gray-900">1M DeClaws</span>
           </div>
         </div>
 

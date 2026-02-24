@@ -40,7 +40,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <span className="text-gray-400">CLAW Token: </span>
+                <span className="text-gray-400">DeClaws Token: </span>
                 <a
                   href={`https://solscan.io/token/${CLAW_TOKEN_MINT}`}
                   target="_blank"

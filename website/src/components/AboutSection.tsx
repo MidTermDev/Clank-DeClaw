@@ -47,14 +47,14 @@ export default function AboutSection() {
               <span className="mt-0.5 text-emerald-500">→</span>
               <span>
                 <strong className="text-gray-900">Capture:</strong> Pay 1,000,000
-                CLAW tokens, receive a random robot from the escrow
+                DeClaws tokens, receive a random robot from the escrow
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-0.5 text-amber-500">←</span>
               <span>
                 <strong className="text-gray-900">Release:</strong> Return any
-                DeClaw NFT, get 1,000,000 CLAW tokens back
+                DeClaw NFT, get 1,000,000 DeClaws tokens back
               </span>
             </li>
           </ul>

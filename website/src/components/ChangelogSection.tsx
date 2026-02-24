@@ -7,7 +7,7 @@ const CHANGELOG = [
     title: "Launch Day 🎰",
     changes: [
       "All 1,000 DeClaw robots minted and deposited in escrow",
-      "MPL-404 hybrid bridge live — swap CLAW ↔ NFTs",
+      "MPL-404 hybrid bridge live — swap DeClaws ↔ NFTs",
       "Website deployed with wallet connect and swap UI",
       "Verification passed all 28 checks",
       "First capture: DeClaw #511 pulled from the machine",
@@ -21,7 +21,7 @@ const CHANGELOG = [
       "Generative art pipeline complete — 8 trait layers, 65 variants",
       "All metadata uploaded to IPFS",
       "Collection registered on Metaplex Core",
-      "Escrow initialized and funded with 1B CLAW tokens",
+      "Escrow initialized and funded with 1B DeClaws tokens",
     ],
   },
 ];

@@ -116,9 +116,9 @@ export default function SwapPanel() {
       <div className="p-6">
         {/* Balance display */}
         <div className="mb-4 flex items-center justify-between rounded-lg border border-gray-100 bg-white px-4 py-3">
-          <span className="text-sm text-gray-500">CLAW Balance</span>
+          <span className="text-sm text-gray-500">DeClaws Balance</span>
           <span className="font-medium text-gray-900">
-            {balance.toLocaleString()} CLAW
+            {balance.toLocaleString()} DeClaws
           </span>
         </div>
 
@@ -127,7 +127,7 @@ export default function SwapPanel() {
           <div className="mb-4 flex items-center justify-between rounded-lg border border-gray-100 bg-white px-4 py-3">
             <span className="text-sm text-gray-500">Swap Rate</span>
             <span className="font-medium text-gray-900">
-              1,000,000 CLAW = 1 NFT
+              1,000,000 DeClaws = 1 NFT
             </span>
           </div>
         )}
@@ -135,7 +135,7 @@ export default function SwapPanel() {
         {tab === "buy" ? (
           <div className="space-y-4">
             <p className="text-sm text-gray-600">
-              Pay {SWAP_AMOUNT.toLocaleString()} CLAW to capture a random DeClaw
+              Pay {SWAP_AMOUNT.toLocaleString()} DeClaws to capture a random DeClaw
               NFT from the escrow.
             </p>
             {escrowNfts.length === 0 && !escrowLoading && (
@@ -163,7 +163,7 @@ export default function SwapPanel() {
             </button>
             {!canBuy && publicKey && (
               <p className="text-xs text-gray-400">
-                You need at least {SWAP_AMOUNT.toLocaleString()} CLAW
+                You need at least {SWAP_AMOUNT.toLocaleString()} DeClaws
               </p>
             )}
           </div>
@@ -171,7 +171,7 @@ export default function SwapPanel() {
           <div className="space-y-4">
             <p className="text-sm text-gray-600">
               Send a DeClaw NFT back to the escrow and receive{" "}
-              {SWAP_AMOUNT.toLocaleString()} CLAW.
+              {SWAP_AMOUNT.toLocaleString()} DeClaws.
             </p>
             {userNfts.length === 0 ? (
               <p className="text-sm text-gray-400">
