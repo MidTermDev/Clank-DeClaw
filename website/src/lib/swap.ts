@@ -1,4 +1,5 @@
 import { publicKey, type Umi } from "@metaplex-foundation/umi";
+import { base58 } from "@metaplex-foundation/umi/serializers";
 import { captureV1, releaseV1 } from "@metaplex-foundation/mpl-hybrid";
 import {
   COLLECTION_ADDRESS,
@@ -6,6 +7,10 @@ import {
   CLAW_TOKEN_MINT,
   FEE_LOCATION,
 } from "./constants";
+
+function sigToString(sig: Uint8Array): string {
+  return base58.deserialize(sig)[0];
+}
 
 export async function executeCaptureV1(umi: Umi, assetAddress: string) {
   const tx = captureV1(umi, {
@@ -16,7 +21,8 @@ export async function executeCaptureV1(umi: Umi, assetAddress: string) {
     token: publicKey(CLAW_TOKEN_MINT),
     feeProjectAccount: publicKey(FEE_LOCATION),
   });
-  return tx.sendAndConfirm(umi, { confirm: { commitment: "confirmed" } });
+  const sig = await tx.send(umi);
+  return sigToString(sig);
 }
 
 export async function executeReleaseV1(umi: Umi, assetAddress: string) {
@@ -28,5 +34,6 @@ export async function executeReleaseV1(umi: Umi, assetAddress: string) {
     token: publicKey(CLAW_TOKEN_MINT),
     feeProjectAccount: publicKey(FEE_LOCATION),
   });
-  return tx.sendAndConfirm(umi, { confirm: { commitment: "confirmed" } });
+  const sig = await tx.send(umi);
+  return sigToString(sig);
 }

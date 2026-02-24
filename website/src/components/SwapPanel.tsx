@@ -47,10 +47,9 @@ export default function SwapPanel() {
     setLoading(true);
     setStatus("Capturing NFT...");
     try {
-      await executeCaptureV1(getUmi(), randomNft.id);
-      setStatus("Capture successful! You got a DeClaw NFT.");
-      refreshBalance();
-      refreshUserNfts();
+      const sig = await executeCaptureV1(getUmi(), randomNft.id);
+      setStatus(`Capture sent! View on Solscan: https://solscan.io/tx/${sig}`);
+      setTimeout(() => { refreshBalance(); refreshUserNfts(); }, 5000);
     } catch (err) {
       setStatus(`Capture failed: ${err instanceof Error ? err.message : "Unknown error"}`);
     } finally {
@@ -63,11 +62,10 @@ export default function SwapPanel() {
     setLoading(true);
     setStatus("Releasing NFT...");
     try {
-      await executeReleaseV1(getUmi(), selectedNft.id);
-      setStatus("Release successful! You received 1,000,000 CLAW.");
+      const sig = await executeReleaseV1(getUmi(), selectedNft.id);
+      setStatus(`Release sent! View on Solscan: https://solscan.io/tx/${sig}`);
       setSelectedNft(null);
-      refreshBalance();
-      refreshUserNfts();
+      setTimeout(() => { refreshBalance(); refreshUserNfts(); }, 5000);
     } catch (err) {
       setStatus(`Release failed: ${err instanceof Error ? err.message : "Unknown error"}`);
     } finally {
@@ -221,9 +219,23 @@ export default function SwapPanel() {
 
         {/* Status message */}
         {status && (
-          <p className="mt-4 rounded-lg border border-gray-100 bg-white px-4 py-3 text-sm text-gray-600">
-            {status}
-          </p>
+          <div className="mt-4 rounded-lg border border-gray-100 bg-white px-4 py-3 text-sm text-gray-600 break-all">
+            {status.includes("https://solscan.io/tx/") ? (
+              <>
+                {status.split("https://solscan.io/tx/")[0]}
+                <a
+                  href={`https://solscan.io/tx/${status.split("https://solscan.io/tx/")[1]}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-900 underline underline-offset-2"
+                >
+                  View on Solscan
+                </a>
+              </>
+            ) : (
+              status
+            )}
+          </div>
         )}
       </div>
     </div>
