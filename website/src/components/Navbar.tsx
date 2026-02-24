@@ -27,14 +27,32 @@ function GitHubIcon() {
   );
 }
 
+function MagicEdenIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <span className="text-xl font-bold tracking-tight text-gray-900">
-          DeClaw
+          De<span className="text-emerald-600">Claw</span>
         </span>
         <div className="flex items-center gap-4">
+          <a
+            href="https://magiceden.io/marketplace/declaw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-lg bg-purple-100 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors hover:bg-purple-200"
+            aria-label="Magic Eden"
+          >
+            <MagicEdenIcon />
+            <span className="hidden sm:inline">Magic Eden</span>
+          </a>
           <a
             href={SOCIAL_LINKS.twitter}
             target="_blank"
