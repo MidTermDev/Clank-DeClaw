@@ -1,0 +1,48 @@
+{
+  "name": "declaw",
+  "version": "1.0.0",
+  "description": "DeClaw NFT Collection — 1,000 claw-machine robot PFPs with MPL-404 hybrid bridge on Solana",
+  "type": "module",
+  "scripts": {
+    "create-layers": "tsx src/create-layers.ts",
+    "generate-art": "tsx src/generate-art.ts",
+    "upload-images": "tsx src/upload-images.ts",
+    "generate-metadata": "tsx src/generate-metadata.ts",
+    "upload-metadata": "tsx src/upload-metadata.ts",
+    "create-collection": "tsx src/create-collection.ts",
+    "mint-nfts": "tsx src/mint-nfts.ts",
+    "init-escrow": "tsx src/init-escrow.ts",
+    "fund-escrow": "tsx src/fund-escrow.ts",
+    "verify": "tsx src/verify.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MidTermDev/Clank-DeClaw.git"
+  },
+  "keywords": [
+    "nft",
+    "solana",
+    "metaplex",
+    "mpl-404"
+  ],
+  "author": "MidTermDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MidTermDev/Clank-DeClaw/issues"
+  },
+  "homepage": "https://github.com/MidTermDev/Clank-DeClaw#readme",
+  "dependencies": {
+    "@metaplex-foundation/mpl-core": "^1.7.0",
+    "@metaplex-foundation/mpl-hybrid": "^0.2.0",
+    "@metaplex-foundation/mpl-toolbox": "^0.10.0",
+    "@metaplex-foundation/umi": "^1.5.1",
+    "@metaplex-foundation/umi-bundle-defaults": "^1.5.1",
+    "@napi-rs/canvas": "^0.1.95",
+    "@solana/web3.js": "^1.98.4",
+    "bs58": "^6.0.0",
+    "dotenv": "^17.3.1",
+    "pinata": "^2.5.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
