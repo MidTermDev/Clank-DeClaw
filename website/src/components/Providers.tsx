@@ -37,7 +37,7 @@ export default function Providers({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <ConnectionProvider endpoint={endpoint} config={{ wsEndpoint: " ", commitment: "confirmed" }}>
       <WalletProvider wallets={[]} autoConnect>
         <WalletModalProvider>
           <UmiSync>{children}</UmiSync>

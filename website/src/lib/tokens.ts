@@ -10,7 +10,10 @@ function getRpcEndpoint(): string {
 }
 
 export async function fetchClawBalance(walletAddress: string): Promise<number> {
-  const connection = new Connection(getRpcEndpoint(), "confirmed");
+  const connection = new Connection(getRpcEndpoint(), {
+    commitment: "confirmed",
+    wsEndpoint: " ",
+  });
   const mint = new PublicKey(CLAW_TOKEN_MINT);
   const owner = new PublicKey(walletAddress);
 
