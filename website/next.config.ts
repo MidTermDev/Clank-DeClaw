@@ -6,12 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "gateway.pinata.cloud",
-        pathname: "/ipfs/**",
-      },
-      {
-        protocol: "https",
-        hostname: "olive-familiar-horse-959.mypinata.cloud",
+        hostname: "ipfs.io",
         pathname: "/ipfs/**",
       },
     ],
