@@ -20,4 +20,5 @@ export const GALLERY_IDS = [0, 7, 23, 42, 99, 128, 256, 333, 404, 500, 666, 777,
 export const SOCIAL_LINKS = {
   twitter: "https://x.com/ClankDeClaw",
   github: "https://github.com/MidTermDev/Clank-DeClaw/",
+  website: "https://declaws.com",
 };
