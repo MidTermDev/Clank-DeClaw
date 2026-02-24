@@ -3,3 +3,4 @@ dist/
 .env
 keypair.json
 .claude/
+.next/
