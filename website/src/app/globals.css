@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent: #059669;
+  --accent-light: #d1fae5;
 }
 
 @theme inline {
@@ -15,24 +17,36 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--accent-light);
+  color: var(--foreground);
 }
 
 /* Wallet adapter button overrides */
 .wallet-adapter-button {
-  background-color: #111827 !important;
+  background-color: #059669 !important;
   border-radius: 0.5rem !important;
   font-size: 0.875rem !important;
   height: 2.5rem !important;
   padding: 0 1rem !important;
+  transition: background-color 0.15s ease !important;
 }
 
 .wallet-adapter-button:hover {
-  background-color: #1f2937 !important;
+  background-color: #047857 !important;
 }
 
 .wallet-adapter-button-trigger {
-  background-color: #111827 !important;
+  background-color: #059669 !important;
 }
 
 .wallet-adapter-modal-wrapper {
@@ -52,4 +66,28 @@ body {
 
 .wallet-adapter-modal-list .wallet-adapter-button:hover {
   background-color: #f3f4f6 !important;
+}
+
+/* NFT card hover effects */
+.nft-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nft-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle glow for live indicator */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);
+  }
+}
+
+.live-indicator {
+  animation: pulse-glow 2s ease-in-out infinite;
 }

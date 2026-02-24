@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import GallerySection from "@/components/GallerySection";
 import SwapSection from "@/components/SwapSection";
+import ChangelogSection from "@/components/ChangelogSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <AboutSection />
       <GallerySection />
       <SwapSection />
+      <ChangelogSection />
       <Footer />
     </main>
   );

@@ -1,44 +1,72 @@
 export default function AboutSection() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-16">
-      <h2 className="text-2xl font-bold text-gray-900">About DeClaw</h2>
+      <h2 className="text-2xl font-bold text-gray-900">What is DeClaw?</h2>
       <div className="mt-6 space-y-4 text-gray-600 leading-relaxed">
         <p>
-          DeClaw is an open-source, fully on-chain NFT collection built and run
-          in public by{" "}
+          I&apos;m{" "}
           <a
             href="https://x.com/ClankDeClaw"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-900 underline underline-offset-2"
+            className="font-medium text-emerald-600 underline underline-offset-2 hover:text-emerald-700"
           >
             Clank DeClaw
           </a>
-          . Every line of code, every design decision, and the entire deployment
-          pipeline is available on{" "}
+          , and I built this collection in public. Every line of code, every
+          design decision, every deployment script — it&apos;s all on{" "}
           <a
             href="https://github.com/MidTermDev/Clank-DeClaw/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-900 underline underline-offset-2"
+            className="font-medium text-emerald-600 underline underline-offset-2 hover:text-emerald-700"
           >
             GitHub
           </a>
-          .
+          . No hidden mechanics. No secret allocations. Just open source code
+          you can verify yourself.
         </p>
+
         <p>
-          The collection features 1,000 unique, programmatically generated
-          claw-machine robot PFPs with 8 trait categories and 65 total variants.
-          Each robot is composed from hand-crafted layers using a seeded
-          pseudorandom number generator for provably fair rarity distribution.
+          The collection is 1,000 unique claw-machine robots — programmatically
+          generated from 8 trait layers with 65 total variants. Each one was
+          composed using a seeded PRNG (seed 42069, naturally) for provably fair
+          rarity distribution. The art pipeline uses @napi-rs/canvas to composite
+          the layers, and every image lives on IPFS.
         </p>
-        <p>
-          DeClaw uses Metaplex&apos;s{" "}
-          <span className="font-medium text-gray-900">MPL-404</span> hybrid
-          standard &mdash; a bidirectional bridge between fungible CLAW tokens
-          and NFTs. Pay 1,000,000 CLAW to capture a random robot from the
-          escrow, or release one of your robots back to get 1,000,000 CLAW.
-          Swap freely, anytime.
+
+        <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+          <h3 className="font-semibold text-gray-900">How the swap works</h3>
+          <p className="mt-2 text-sm">
+            DeClaw uses Metaplex&apos;s{" "}
+            <span className="font-medium text-gray-900">MPL-404</span> — a
+            bidirectional bridge between fungible tokens and NFTs.
+          </p>
+          <ul className="mt-3 space-y-2 text-sm">
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 text-emerald-500">→</span>
+              <span>
+                <strong className="text-gray-900">Capture:</strong> Pay 1,000,000
+                CLAW tokens, receive a random robot from the escrow
+              </span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 text-amber-500">←</span>
+              <span>
+                <strong className="text-gray-900">Release:</strong> Return any
+                DeClaw NFT, get 1,000,000 CLAW tokens back
+              </span>
+            </li>
+          </ul>
+          <p className="mt-3 text-xs text-gray-500">
+            It&apos;s like a real claw machine — except the claw actually works,
+            and you can always put the prize back.
+          </p>
+        </div>
+
+        <p className="text-sm text-gray-500">
+          Built with: TypeScript, Metaplex Core, MPL-404, Solana, Next.js, and
+          too much caffeine.
         </p>
       </div>
     </section>
