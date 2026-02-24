@@ -1,10 +1,10 @@
 // Batch mint 1,000 NFTs into the DeClaw collection
-// Mints in groups of 5 with resume support via progress file
+// Sends multiple transactions concurrently for speed
+// Resume support via progress file
 
 import {
   generateSigner,
   publicKey,
-  transactionBuilder,
 } from "@metaplex-foundation/umi";
 import { create, fetchCollectionV1 } from "@metaplex-foundation/mpl-core";
 import { readFileSync, writeFileSync, existsSync } from "fs";
@@ -15,7 +15,7 @@ const COLLECTION_FILE = join(process.cwd(), "output", "collection-address.txt");
 const BASE_URI_FILE = join(process.cwd(), "output", "base-uri.txt");
 const PROGRESS_FILE = join(process.cwd(), "output", "mint-progress.json");
 const ASSETS_FILE = join(process.cwd(), "output", "minted-assets.json");
-const BATCH_SIZE = 5;
+const CONCURRENCY = 15; // Send 15 txs at once
 
 interface MintProgress {
   lastMinted: number;
@@ -34,19 +34,44 @@ function saveProgress(progress: MintProgress) {
 }
 
 async function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function mintOne(
+  umi: any,
+  collection: any,
+  baseUri: string,
+  id: number
+): Promise<{ id: number; address: string }> {
+  const assetSigner = generateSigner(umi);
+
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try {
+      await create(umi, {
+        asset: assetSigner,
+        name: `${COLLECTION_NAME} #${id}`,
+        uri: `${baseUri}${id}.json`,
+        collection,
+      }).sendAndConfirm(umi);
+
+      return { id, address: assetSigner.publicKey.toString() };
+    } catch (err: any) {
+      if (attempt === 5) {
+        throw new Error(`Failed #${id}: ${err.message || err}`);
+      }
+      await sleep(attempt * 2000);
+    }
+  }
+  throw new Error(`Unreachable`);
 }
 
 async function main() {
   const umi = getUmi();
 
   if (!existsSync(COLLECTION_FILE)) {
-    console.error(
-      "Collection not found. Run `npm run create-collection` first."
-    );
+    console.error("Collection not found. Run `npm run create-collection` first.");
     process.exit(1);
   }
-
   if (!existsSync(BASE_URI_FILE)) {
     console.error("Base URI not found. Run `npm run upload-metadata` first.");
     process.exit(1);
@@ -59,11 +84,9 @@ async function main() {
 
   console.log(`Collection: ${collectionAddress}`);
   console.log(`Base URI: ${baseUri}`);
+  console.log(`Concurrency: ${CONCURRENCY}`);
 
-  // Fetch collection to pass to create()
   const collection = await fetchCollectionV1(umi, collectionAddress);
-
-  // Load progress for resume support
   const progress = loadProgress();
   const startFrom = progress.lastMinted + 1;
 
@@ -78,65 +101,90 @@ async function main() {
   }
 
   console.log(`Minting NFTs ${startFrom} to ${TOTAL_SUPPLY - 1}...`);
+  const t0 = Date.now();
 
-  for (let i = startFrom; i < TOTAL_SUPPLY; i += BATCH_SIZE) {
-    const batchEnd = Math.min(i + BATCH_SIZE, TOTAL_SUPPLY);
-    const batchAssets: { id: number; address: string }[] = [];
+  for (let i = startFrom; i < TOTAL_SUPPLY; i += CONCURRENCY) {
+    const batchEnd = Math.min(i + CONCURRENCY, TOTAL_SUPPLY);
+    const indices = [];
+    for (let j = i; j < batchEnd; j++) indices.push(j);
 
-    // Build batch transaction
-    let builder = transactionBuilder();
+    // Send all in parallel
+    const results = await Promise.allSettled(
+      indices.map((id) => mintOne(umi, collection, baseUri, id))
+    );
 
-    for (let j = i; j < batchEnd; j++) {
-      const assetSigner = generateSigner(umi);
-      batchAssets.push({ id: j, address: assetSigner.publicKey.toString() });
-
-      builder = builder.add(
-        create(umi, {
-          asset: assetSigner,
-          name: `${COLLECTION_NAME} #${j}`,
-          uri: `${baseUri}${j}.json`,
-          collection,
-        })
-      );
-    }
-
-    // Send batch with retry
-    let retries = 3;
-    while (retries > 0) {
-      try {
-        await builder.sendAndConfirm(umi);
-        break;
-      } catch (err: any) {
-        retries--;
-        if (retries === 0) {
-          console.error(`Failed to mint batch ${i}-${batchEnd - 1}:`, err.message || err);
-          console.log("Progress saved. Re-run to resume.");
-          saveProgress(progress);
-          process.exit(1);
-        }
-        console.warn(`Retry (${3 - retries}/3) for batch ${i}-${batchEnd - 1}...`);
-        await sleep(2000);
+    // Process results
+    let batchFailed = false;
+    for (const [idx, result] of results.entries()) {
+      if (result.status === "fulfilled") {
+        progress.assets.push(result.value);
+      } else {
+        console.error(`  ${result.reason}`);
+        batchFailed = true;
       }
     }
 
-    // Update progress
-    progress.assets.push(...batchAssets);
-    progress.lastMinted = batchEnd - 1;
-    saveProgress(progress);
+    // Update lastMinted to highest successful mint in this batch
+    const successIds = results
+      .filter((r): r is PromiseFulfilledResult<{ id: number; address: string }> =>
+        r.status === "fulfilled"
+      )
+      .map((r) => r.value.id);
 
-    if ((batchEnd) % 50 === 0 || batchEnd === TOTAL_SUPPLY) {
-      console.log(`  ${batchEnd}/${TOTAL_SUPPLY} minted`);
+    if (successIds.length > 0) {
+      // Sort assets by id for consistent ordering
+      progress.assets.sort((a, b) => a.id - b.id);
+      progress.lastMinted = progress.assets[progress.assets.length - 1].id;
     }
 
-    // Small delay between batches to avoid rate limiting
-    if (batchEnd < TOTAL_SUPPLY) {
-      await sleep(500);
+    saveProgress(progress);
+
+    const elapsed = ((Date.now() - t0) / 1000).toFixed(0);
+    const minted = progress.assets.length;
+    const rate = (minted - startFrom) / ((Date.now() - t0) / 1000);
+    const remaining = TOTAL_SUPPLY - minted;
+    const eta = remaining > 0 && rate > 0 ? (remaining / rate / 60).toFixed(1) : "?";
+    console.log(`  ${minted}/${TOTAL_SUPPLY} minted (${elapsed}s, ${rate.toFixed(1)}/s, ETA: ${eta}min)`);
+
+    if (batchFailed) {
+      console.log("Some mints failed. Re-run to fill gaps.");
+      // Don't exit — continue with next batch
     }
   }
 
-  // Save final asset list
+  // Handle any gaps from failed mints
+  const mintedIds = new Set(progress.assets.map((a) => a.id));
+  const gaps = [];
+  for (let i = 0; i < TOTAL_SUPPLY; i++) {
+    if (!mintedIds.has(i)) gaps.push(i);
+  }
+
+  if (gaps.length > 0) {
+    console.log(`\nFilling ${gaps.length} gaps: ${gaps.slice(0, 10).join(", ")}${gaps.length > 10 ? "..." : ""}`);
+    for (let i = 0; i < gaps.length; i += CONCURRENCY) {
+      const batch = gaps.slice(i, i + CONCURRENCY);
+      const results = await Promise.allSettled(
+        batch.map((id) => mintOne(umi, collection, baseUri, id))
+      );
+      for (const result of results) {
+        if (result.status === "fulfilled") {
+          progress.assets.push(result.value);
+        } else {
+          console.error(`  ${result.reason}`);
+        }
+      }
+      progress.assets.sort((a, b) => a.id - b.id);
+      if (progress.assets.length > 0) {
+        progress.lastMinted = progress.assets[progress.assets.length - 1].id;
+      }
+      saveProgress(progress);
+    }
+  }
+
+  saveProgress(progress);
   writeFileSync(ASSETS_FILE, JSON.stringify(progress.assets, null, 2));
-  console.log(`\nDone! ${TOTAL_SUPPLY} NFTs minted.`);
+  const totalTime = ((Date.now() - t0) / 1000 / 60).toFixed(1);
+  console.log(`\nDone! ${progress.assets.length} NFTs minted in ${totalTime} minutes`);
   console.log(`Asset list saved to ${ASSETS_FILE}`);
 }
 
