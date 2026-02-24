@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useUmiStore } from "@/hooks/useUmiStore";
 import { useClawBalance } from "@/hooks/useClawBalance";
@@ -195,12 +194,11 @@ export default function SwapPanel() {
                       }`}
                     >
                       <div className="relative aspect-square">
-                        <Image
-                          src={nft.content.links?.image || imageUrl(nftId)}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={imageUrl(nftId)}
                           alt={nft.content.metadata.name}
-                          fill
-                          className="object-cover"
-                          sizes="80px"
+                          className="h-full w-full object-cover"
                         />
                       </div>
                       <p className="truncate px-1 py-1 text-xs text-gray-600">

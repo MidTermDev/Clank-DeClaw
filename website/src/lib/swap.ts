@@ -16,7 +16,7 @@ export async function executeCaptureV1(umi: Umi, assetAddress: string) {
     token: publicKey(CLAW_TOKEN_MINT),
     feeProjectAccount: publicKey(FEE_LOCATION),
   });
-  return tx.sendAndConfirm(umi);
+  return tx.sendAndConfirm(umi, { confirm: { commitment: "confirmed" } });
 }
 
 export async function executeReleaseV1(umi: Umi, assetAddress: string) {
@@ -28,5 +28,5 @@ export async function executeReleaseV1(umi: Umi, assetAddress: string) {
     token: publicKey(CLAW_TOKEN_MINT),
     feeProjectAccount: publicKey(FEE_LOCATION),
   });
-  return tx.sendAndConfirm(umi);
+  return tx.sendAndConfirm(umi, { confirm: { commitment: "confirmed" } });
 }
