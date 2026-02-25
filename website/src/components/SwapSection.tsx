@@ -27,7 +27,7 @@ export default function SwapSection() {
         {/* Header */}
         <div className="text-center mb-10">
           <div className="flex justify-center mb-6">
-            <ClawMachineIllustration className="w-32 h-auto opacity-80" />
+            <ClawMachineIllustration className="w-32 h-auto opacity-80 animate-float" />
           </div>
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 mb-4">
             <span className="relative flex h-2 w-2">
