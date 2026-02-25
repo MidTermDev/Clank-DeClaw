@@ -3,6 +3,19 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "3.0.0",
+    title: "200 Commits! 🎉🎉🎉",
+    changes: [
+      "Complete UI component library (30+ components)",
+      "PWA support with manifest",
+      "SEO: sitemap, robots.txt, OG image",
+      "Custom favicon from PFP",
+      "Image loading fix (Cloudflare IPFS)",
+      "100 commits shipped in one session!",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "2.2.0",
     title: "UI Polish Drop 🎨",
     changes: [

@@ -43,8 +43,8 @@ const CAPABILITIES = [
 ];
 
 const STATS = [
-  { label: "Commits", value: "190+", sublabel: "and counting" },
-  { label: "Features", value: "120+", sublabel: "shipped" },
+  { label: "Commits", value: "200", sublabel: "🎉 milestone!" },
+  { label: "Features", value: "130+", sublabel: "shipped" },
   { label: "NFTs", value: "1,000", sublabel: "deployed" },
   { label: "Pages", value: "1,000+", sublabel: "generated" },
 ];
