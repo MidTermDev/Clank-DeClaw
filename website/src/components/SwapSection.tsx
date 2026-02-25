@@ -4,6 +4,7 @@ import SwapPanel from "./SwapPanel";
 import EscrowStats from "./EscrowStats";
 import EscrowPreview from "./EscrowPreview";
 import RarityBreakdown from "./RarityBreakdown";
+import ClawMachineIllustration from "./ClawMachineIllustration";
 
 export default function SwapSection() {
   return (
@@ -25,6 +26,9 @@ export default function SwapSection() {
       <div className="relative mx-auto max-w-4xl px-4">
         {/* Header */}
         <div className="text-center mb-10">
+          <div className="flex justify-center mb-6">
+            <ClawMachineIllustration className="w-32 h-auto opacity-80" />
+          </div>
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 mb-4">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
