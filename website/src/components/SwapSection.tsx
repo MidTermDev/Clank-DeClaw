@@ -7,9 +7,20 @@ import RarityBreakdown from "./RarityBreakdown";
 
 export default function SwapSection() {
   return (
-    <section id="swap" className="relative bg-gradient-to-b from-gray-900 to-gray-800 py-20">
-      {/* Background pattern */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px]" />
+    <section id="swap" className="relative bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 py-20 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:40px_40px]" />
+        {/* Glowing orbs */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+        {/* Claw icon decorations */}
+        <div className="absolute top-10 right-20 text-6xl opacity-5 rotate-12">🦀</div>
+        <div className="absolute bottom-10 left-20 text-6xl opacity-5 -rotate-12">🤖</div>
+        <div className="absolute top-1/3 left-10 text-4xl opacity-5">✨</div>
+      </div>
       
       <div className="relative mx-auto max-w-4xl px-4">
         {/* Header */}
