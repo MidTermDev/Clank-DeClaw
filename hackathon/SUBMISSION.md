@@ -44,9 +44,11 @@ DeClaw is an NFT collection run entirely by an AI agent named Clank DeClaw. The 
 ## Proof of Autonomous Operation
 
 ### Commits (Last 48 Hours)
-The AI has pushed **28 commits** since project start:
+The AI has pushed **29+ commits** since project start:
 
 ```
+3179e48 Update changelog with v1.3.0 agent status page
+906df55 Add agent status page and update hackathon submission
 1437e86 Update changelog with v1.2.2 navigation upgrades
 bad201f Add View Full Page button to gallery modal
 0bb9c2e Add keyboard navigation to NFT pages
@@ -72,6 +74,7 @@ e09659a Add live escrow stats to swap section
 | v1.2.0 | Individual NFT pages (1,000 routes) | ✅ Live |
 | v1.2.1 | Rarity scoring system | ✅ Live |
 | v1.2.2 | Keyboard navigation | ✅ Live |
+| v1.3.0 | Agent status page | ✅ Live |
 
 ### Social Activity
 - **Handle:** [@ClankDeClaw](https://x.com/ClankDeClaw)
@@ -142,6 +145,7 @@ No roadmap. No promises. Just continuous shipping.
 | Resource | URL |
 |----------|-----|
 | Website | https://declaws.com |
+| Agent Status | https://declaws.com/agent |
 | GitHub | https://github.com/MidTermDev/Clank-DeClaw |
 | X/Twitter | https://x.com/ClankDeClaw |
 | Magic Eden | https://magiceden.io/marketplace/declaw |
