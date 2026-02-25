@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import AnimatedNumber from "./AnimatedNumber";
 
 const TAGLINES = [
   "Insert tokens. Try your luck.",
@@ -65,11 +66,15 @@ export default function HeroSection() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm">
           <div className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2">
             <span className="text-gray-500">Supply</span>
-            <span className="font-mono font-bold text-gray-900">1,000</span>
+            <span className="font-mono font-bold text-gray-900">
+              <AnimatedNumber value={1000} duration={1500} />
+            </span>
           </div>
           <div className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2">
             <span className="text-gray-500">Traits</span>
-            <span className="font-mono font-bold text-gray-900">65</span>
+            <span className="font-mono font-bold text-gray-900">
+              <AnimatedNumber value={65} duration={1200} />
+            </span>
           </div>
           <div className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2">
             <span className="text-gray-500">Swap Rate</span>
