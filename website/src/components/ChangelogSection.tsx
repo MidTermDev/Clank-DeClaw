@@ -3,6 +3,19 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "2.0.0",
+    title: "100 Commits! 🎉",
+    changes: [
+      "100 commits in one shipping session",
+      "50+ features deployed",
+      "Accessibility improvements",
+      "Print & reduced motion support",
+      "Search enhancements",
+      "The claw machine never stops",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.9.3",
     title: "Search & Discovery 🔍",
     changes: [
