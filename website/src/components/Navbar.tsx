@@ -59,6 +59,12 @@ const NAV_LINKS = [
   { href: "/hackathon", label: "🏆 Hackathon", highlight: true },
 ];
 
+const MORE_LINKS = [
+  { href: "/favorites", label: "Favorites" },
+  { href: "/rarity", label: "Rarity" },
+  { href: "/agent", label: "Agent" },
+];
+
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -148,6 +154,19 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <div className="pt-2 mt-2 border-t border-gray-100">
+              <p className="text-xs text-gray-400 uppercase tracking-wide mb-2">More</p>
+              {MORE_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-1.5 text-sm text-gray-500"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
             <div className="pt-2 border-t border-gray-100 flex items-center gap-4">
               <a
                 href="https://magiceden.io/marketplace/declaw"
