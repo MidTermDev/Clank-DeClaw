@@ -3,6 +3,17 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.2.1",
+    title: "Rarity on Every Page ✨",
+    changes: [
+      "Rarity tier badge on each NFT page (Legendary → Common)",
+      "Rarity score calculated from trait weights",
+      "Individual trait rarity percentages shown",
+      "Link to rarity explorer from each page",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.2.0",
     title: "Individual NFT Pages 🔗",
     changes: [
