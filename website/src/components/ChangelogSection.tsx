@@ -3,6 +3,18 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.6.0",
+    title: "Compare & QoL 🔄",
+    changes: [
+      "New /compare page - side-by-side NFT comparison",
+      "Mobile navigation menu",
+      "Quick jump to any NFT by ID",
+      "Improved footer with all page links",
+      "Back to top button",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.5.0",
     title: "Browse & Filter 🔍",
     changes: [
