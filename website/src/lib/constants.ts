@@ -11,7 +11,7 @@ export const MPL_HYBRID_PROGRAM_ID = "MPL4o4wMzndgh8T1NVDxELQCj5UQfYTYEkabX3wNKt
 export const CLAW_DECIMALS = 6;
 export const SWAP_AMOUNT = 1_000_000; // 1M CLAW per NFT
 
-export const IPFS_GATEWAY = "https://ipfs.io/ipfs";
+export const IPFS_GATEWAY = "https://cloudflare-ipfs.com/ipfs";
 export const imageUrl = (id: number) => `${IPFS_GATEWAY}/${IMAGES_CID}/${id}.png`;
 export const metadataUrl = (id: number) => `${IPFS_GATEWAY}/${METADATA_CID}/${id}.json`;
 

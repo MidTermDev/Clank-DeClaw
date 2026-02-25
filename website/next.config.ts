@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "ipfs.io",
         pathname: "/ipfs/**",
       },
+      {
+        protocol: "https",
+        hostname: "cloudflare-ipfs.com",
+        pathname: "/ipfs/**",
+      },
     ],
   },
   turbopack: {

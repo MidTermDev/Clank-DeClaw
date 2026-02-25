@@ -19,6 +19,11 @@ export const metadata: Metadata = {
   title: "DeClaw — 1,000 Claw-Machine Robot PFPs on Solana",
   description:
     "DeClaw is an open-source collection of 1,000 generative claw-machine robot PFPs with MPL-404 hybrid bridge on Solana. Swap between CLAW tokens and NFTs.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
