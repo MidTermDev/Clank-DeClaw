@@ -9,12 +9,12 @@ interface ShareButtonsProps {
 
 export default function ShareButtons({ nftId }: ShareButtonsProps) {
   const [downloading, setDownloading] = useState(false);
+  const [copied, setCopied] = useState(false);
   const url = `https://declaws.com/declaw/${nftId}`;
 
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      alert("Link copied!");
     } catch {
       const input = document.createElement("input");
       input.value = url;
@@ -22,8 +22,9 @@ export default function ShareButtons({ nftId }: ShareButtonsProps) {
       input.select();
       document.execCommand("copy");
       document.body.removeChild(input);
-      alert("Link copied!");
     }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const handleDownload = async () => {
@@ -58,9 +59,13 @@ export default function ShareButtons({ nftId }: ShareButtonsProps) {
       </a>
       <button
         onClick={copyLink}
-        className="flex-1 min-w-[100px] rounded-xl bg-gray-100 p-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+        className={`flex-1 min-w-[100px] rounded-xl p-3 text-center text-sm font-medium transition-colors ${
+          copied 
+            ? "bg-emerald-100 text-emerald-700" 
+            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+        }`}
       >
-        Copy Link
+        {copied ? "✓ Copied!" : "Copy Link"}
       </button>
       <button
         onClick={handleDownload}
