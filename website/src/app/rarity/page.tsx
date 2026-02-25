@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
@@ -190,7 +191,7 @@ export default function RarityPage() {
           </div>
 
           {searchResult && (
-            <div className="mt-6 flex gap-6">
+            <Link href={`/declaw/${searchResult.id}`} className="mt-6 flex gap-6 rounded-lg p-2 -m-2 hover:bg-gray-100 transition-colors">
               <img
                 src={`${IPFS_GATEWAY}/${IMAGES_CID}/${searchResult.id}.png`}
                 alt={`DeClaw #${searchResult.id}`}
@@ -211,8 +212,9 @@ export default function RarityPage() {
                     </span>
                   ))}
                 </div>
+                <p className="mt-3 text-sm text-emerald-600 font-medium">View full details →</p>
               </div>
-            </div>
+            </Link>
           )}
         </div>
 
@@ -223,7 +225,7 @@ export default function RarityPage() {
             {topRare.map((nft, i) => {
               const tier = getRarityTier(nft.rarityScore);
               return (
-                <div key={nft.id} className="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm">
+                <Link key={nft.id} href={`/declaw/${nft.id}`} className="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm hover:shadow-md hover:border-gray-200 transition-all">
                   <div className="relative">
                     <img
                       src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
@@ -241,7 +243,7 @@ export default function RarityPage() {
                     </div>
                     <p className="text-xs text-gray-500">Score: {nft.rarityScore}</p>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
