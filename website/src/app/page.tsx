@@ -7,6 +7,7 @@ import ChangelogSection from "@/components/ChangelogSection";
 import Footer from "@/components/Footer";
 import StatsBanner from "@/components/StatsBanner";
 import TipOfTheDay from "@/components/TipOfTheDay";
+import SocialProof from "@/components/SocialProof";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <HeroSection />
       <SwapSection />
       <AboutSection />
+      <SocialProof />
       <GallerySection />
       <ChangelogSection />
       <Footer />
