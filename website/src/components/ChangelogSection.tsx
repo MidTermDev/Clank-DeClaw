@@ -3,6 +3,17 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.2.2",
+    title: "Navigation Upgrades 🎮",
+    changes: [
+      "Keyboard navigation: use ← → arrow keys to browse NFTs",
+      "Gallery modal now links to individual NFT pages",
+      "Rarity explorer items are now clickable",
+      "Better cross-linking between all pages",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.2.1",
     title: "Rarity on Every Page ✨",
     changes: [
