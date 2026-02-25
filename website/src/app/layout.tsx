@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Providers from "@/components/Providers";
 import GlobalShortcuts from "@/components/GlobalShortcuts";
 import ScrollProgress from "@/components/ScrollProgress";
+import KonamiCode from "@/components/KonamiCode";
 import "./globals.css";
 
 const inter = Inter({
@@ -27,6 +28,7 @@ export default function RootLayout({
         <Providers>
           <ScrollProgress />
           <GlobalShortcuts />
+          <KonamiCode />
           {children}
         </Providers>
       </body>
