@@ -3,6 +3,19 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.9.0",
+    title: "Polish & Delight ✨",
+    changes: [
+      "Confetti on successful captures 🎉",
+      "Recently viewed NFTs in footer",
+      "Rarity badges on gallery cards",
+      "Scroll progress indicator",
+      "Page transition animations",
+      "Konami code Easter egg 🎮",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.8.0",
     title: "Swap UI Glow Up 🎰",
     changes: [
