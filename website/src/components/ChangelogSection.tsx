@@ -3,6 +3,18 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.9.3",
+    title: "Search & Discovery 🔍",
+    changes: [
+      "Smart search by ID or trait",
+      "Rarity distribution chart",
+      "Magic Eden button in gallery",
+      "Press / to search",
+      "Collection stats visualization",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.9.2",
     title: "Swap Experience ⭐",
     changes: [
