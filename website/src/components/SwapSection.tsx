@@ -45,8 +45,12 @@ export default function SwapSection() {
         {/* Main swap area */}
         <div className="grid md:grid-cols-2 gap-8 items-start">
           {/* Left: Swap Panel */}
-          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-            <SwapPanel />
+          <div className="relative">
+            {/* Gradient border */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 via-cyan-500 to-purple-500 rounded-2xl opacity-75 blur-sm" />
+            <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <SwapPanel />
+            </div>
           </div>
 
           {/* Right: Info + Stats */}
