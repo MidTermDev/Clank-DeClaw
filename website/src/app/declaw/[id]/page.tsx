@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ShareButtons from "@/components/ShareButtons";
 import RandomDeclawButton from "@/components/RandomDeclawButton";
+import KeyboardNav from "@/components/KeyboardNav";
 import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import mintedAssets from "@/lib/minted-assets.json";
@@ -112,6 +113,7 @@ export default async function DeclawPage({ params }: Props) {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
+      <KeyboardNav prevId={prevId} nextId={nextId} />
       
       <div className="mx-auto max-w-4xl px-4 py-12">
         {/* Navigation */}
@@ -235,6 +237,9 @@ export default async function DeclawPage({ params }: Props) {
         {/* Random */}
         <div className="mt-12 text-center">
           <RandomDeclawButton />
+          <p className="mt-4 text-xs text-gray-400">
+            Tip: Use ← → arrow keys to browse
+          </p>
         </div>
       </div>
 
