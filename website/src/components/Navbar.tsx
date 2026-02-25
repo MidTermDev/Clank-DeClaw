@@ -54,12 +54,13 @@ function CloseIcon() {
 }
 
 const NAV_LINKS = [
+  { href: "/#swap", label: "🎰 Swap", highlight: true },
   { href: "/browse", label: "Browse" },
   { href: "/favorites", label: "Favorites" },
   { href: "/compare", label: "Compare" },
   { href: "/rarity", label: "Rarity" },
   { href: "/agent", label: "Agent" },
-  { href: "/hackathon", label: "Hackathon", highlight: true },
+  { href: "/hackathon", label: "Hackathon" },
 ];
 
 export default function Navbar() {
