@@ -69,6 +69,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="/compare" className="text-gray-500 underline underline-offset-2 hover:text-gray-700">
+                  Compare NFTs
+                </a>
+              </li>
+              <li>
                 <a href="/rarity" className="text-gray-500 underline underline-offset-2 hover:text-gray-700">
                   Rarity Explorer
                 </a>
