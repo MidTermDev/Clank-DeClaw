@@ -136,14 +136,28 @@ export default function BrowsePage() {
         <div className="mt-6 rounded-xl bg-gray-50 p-4 border border-gray-100">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-medium text-gray-700">Filter by Traits</h2>
-            {activeFilterCount > 0 && (
+            <div className="flex items-center gap-3">
               <button
-                onClick={clearFilters}
-                className="text-sm text-emerald-600 hover:text-emerald-700"
+                onClick={() => {
+                  const randomCategory = TRAIT_CATEGORIES[Math.floor(Math.random() * TRAIT_CATEGORIES.length)];
+                  const options = getTraitOptions(randomCategory);
+                  const randomTrait = options[Math.floor(Math.random() * options.length)];
+                  setFilters({ [randomCategory]: randomTrait });
+                  setPage(1);
+                }}
+                className="text-sm text-purple-600 hover:text-purple-700"
               >
-                Clear all ({activeFilterCount})
+                🎲 Surprise me
               </button>
-            )}
+              {activeFilterCount > 0 && (
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-emerald-600 hover:text-emerald-700"
+                >
+                  Clear all ({activeFilterCount})
+                </button>
+              )}
+            </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
             {TRAIT_CATEGORIES.map((category) => (
