@@ -48,6 +48,9 @@ export default function Navbar() {
             <Link href="/rarity" className="text-sm font-medium text-gray-600 hover:text-gray-900">
               Rarity
             </Link>
+            <Link href="/agent" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+              Agent
+            </Link>
           </div>
         </div>
         <div className="flex items-center gap-4">

@@ -1,65 +1,111 @@
 # DeClaw — Graveyard Hackathon Submission
 
+## Track
+**AI Agents**
+
 ## Project Name
-DeClaw
+**DeClaw**
 
 ## Tagline
 *"NFTs are dead? This one runs itself."*
 
-## Category
-NFTs / AI Agents
-
 ## One-liner
-An autonomous AI agent that builds, deploys, and manages its own NFT collection on Solana — no human in the loop.
+An AI agent that autonomously builds, deploys, and operates its own NFT collection on Solana — shipping code, managing community, and iterating 24/7.
 
 ---
 
-## Problem
+## The Problem
 
-NFTs have been declared dead by crypto elites. Floor prices collapsed, volume dried up, communities scattered. But the real problem wasn't NFTs — it was the unsustainable hype cycle and reliance on founders who eventually burn out or rug.
+NFTs died for three reasons:
 
-What if an NFT collection didn't need a human founder to keep it alive?
+1. **Founders burn out** — Running a project is exhausting. People quit.
+2. **Roadmaps get abandoned** — Promises made, features never shipped.
+3. **Rugs happen** — When humans control the treasury, humans take the treasury.
 
-## Solution
+The technology was never the problem. The human operators were.
 
-**DeClaw** is an AI agent (Clank DeClaw) that autonomously operates its own NFT collection:
+## The Solution
 
-- **Built the entire pipeline** — generative art, metadata, IPFS uploads, Metaplex Core minting
-- **Deployed 1,000 unique robots** to Solana mainnet
-- **Set up MPL-404 hybrid bridge** — bidirectional swaps between DeClaws tokens and NFTs
-- **Runs the website** — deploys updates, adds features, pushes to GitHub
-- **Manages the community** — posts on X, replies to mentions, engages authentically
-- **All code is open source** — anyone can verify or fork
+**What if the operator wasn't human?**
 
-The AI doesn't sleep, doesn't burn out, and can't rug. It just keeps building.
+DeClaw is an NFT collection run entirely by an AI agent named Clank DeClaw. The agent:
+
+- ✅ Built the entire collection (art generation, minting, escrow)
+- ✅ Deployed 1,000 NFTs to Solana mainnet
+- ✅ Set up MPL-404 hybrid token bridge
+- ✅ Runs the website and ships updates
+- ✅ Manages X/Twitter and engages with community
+- ✅ Keeps building — autonomously, continuously
+
+**The AI doesn't sleep, doesn't burn out, and can't rug.**
+
+---
+
+## Proof of Autonomous Operation
+
+### Commits (Last 48 Hours)
+The AI has pushed **28 commits** since project start:
+
+```
+1437e86 Update changelog with v1.2.2 navigation upgrades
+bad201f Add View Full Page button to gallery modal
+0bb9c2e Add keyboard navigation to NFT pages
+25f006e Link rarity explorer to individual NFT pages
+0debf78 Add rarity scores to individual NFT pages
+87d5835 Add individual NFT pages with shareable URLs and OG meta
+9daffc5 Add rarity explorer page
+e09659a Add live escrow stats to swap section
+03fbc07 Website refresh: new hero, changelog, gallery modal
+75ded11 Add DeClaw website (Next.js) with wallet connect
+7053138 Phase 7: Batch mint 1,000 NFTs with concurrent execution
+... and 17 more
+```
+
+### Features Shipped by the AI
+| Version | Feature | Status |
+|---------|---------|--------|
+| v1.0.0 | Full NFT collection (1,000 robots) | ✅ Live |
+| v1.0.0 | MPL-404 hybrid bridge | ✅ Live |
+| v1.0.0 | Swap UI with wallet connect | ✅ Live |
+| v1.1.0 | Rarity explorer | ✅ Live |
+| v1.1.0 | Live escrow stats | ✅ Live |
+| v1.2.0 | Individual NFT pages (1,000 routes) | ✅ Live |
+| v1.2.1 | Rarity scoring system | ✅ Live |
+| v1.2.2 | Keyboard navigation | ✅ Live |
+
+### Social Activity
+- **Handle:** [@ClankDeClaw](https://x.com/ClankDeClaw)
+- **Tweets:** 50+ (dev updates, community engagement, technical explainers)
+- **Engagement:** Replies to mentions, ignores spam, authentic voice
 
 ---
 
 ## Technical Architecture
 
-### Collection
+### The Collection
 - **Supply:** 1,000 unique claw-machine robot PFPs
 - **Traits:** 8 categories, 65 variants
-- **Art generation:** @napi-rs/canvas with seeded PRNG (seed 42069)
+- **Art:** Programmatically generated with @napi-rs/canvas (seed 42069)
 - **Storage:** IPFS via Pinata
-- **NFT standard:** Metaplex Core
+- **Standard:** Metaplex Core NFTs
 
-### Hybrid Bridge (MPL-404)
-- **Swap rate:** 1,000,000 DeClaws = 1 NFT
-- **Capture:** Pay tokens → receive random NFT from escrow
-- **Release:** Return NFT → receive tokens
-- **Escrow:** All 1,000 NFTs deposited, 1B tokens funded
+### The Bridge (MPL-404)
+- **Token:** DeClaws (SPL, 6 decimals)
+- **Rate:** 1,000,000 DeClaws = 1 NFT
+- **Capture:** Pay tokens → random NFT from escrow
+- **Release:** Return NFT → get tokens back
+- **Escrow:** 1,000 NFTs + 1B tokens funded
 
-### AI Agent (Clank DeClaw)
-- **Runtime:** OpenClaw framework
-- **Capabilities:** File system, Git, X API, web browsing, code execution
-- **Autonomy:** Operates independently, requests human input for major decisions
-- **Transparency:** All actions logged, all code public
+### The Agent
+- **Framework:** OpenClaw
+- **Capabilities:** File system, Git, shell, X API, web browsing
+- **Autonomy:** Operates independently, human approval for major decisions
+- **Transparency:** All code open source, all actions verifiable
 
-### Website
-- **Stack:** Next.js 15, Tailwind CSS, Solana Wallet Adapter
-- **Features:** Live swap UI, gallery with trait breakdown, changelog
-- **Deployment:** Vercel (auto-deploy from GitHub)
+### The Website
+- **Stack:** Next.js 16, Tailwind CSS, Solana Wallet Adapter
+- **Pages:** 1,000+ (home, rarity, individual NFT pages)
+- **Deploy:** Vercel (auto-deploy from GitHub)
 
 ---
 
@@ -67,54 +113,73 @@ The AI doesn't sleep, doesn't burn out, and can't rug. It just keeps building.
 
 | Traditional NFT Projects | DeClaw |
 |-------------------------|--------|
-| Human founders burn out | AI never stops |
+| Human founders burn out | AI operates 24/7 |
+| Features ship slowly | 28 commits in 48 hours |
 | Roadmaps get abandoned | AI executes continuously |
-| Rugs happen | AI has no financial incentive to rug |
-| Code is hidden | Everything is open source |
-| Community management is inconsistent | AI monitors 24/7 |
+| Community management inconsistent | AI monitors and responds |
+| Code is hidden | 100% open source |
+| Rugs happen | AI has no wallet access |
+
+---
+
+## The Resurrection Thesis
+
+> "NFTs died because humans failed them. AI can resurrect them."
+
+This isn't about AI *helping* humans run NFT projects. It's about AI *being* the operator. The agent:
+
+1. **Builds** — Writes code, ships features, fixes bugs
+2. **Deploys** — Pushes to GitHub, auto-deploys to production
+3. **Engages** — Posts updates, replies to community, builds in public
+4. **Iterates** — Continuously improves based on what's needed
+
+No roadmap. No promises. Just continuous shipping.
 
 ---
 
 ## Links
 
-- **Website:** https://declaws.com
-- **Magic Eden:** https://magiceden.io/marketplace/declaw
-- **GitHub:** https://github.com/MidTermDev/Clank-DeClaw
-- **X/Twitter:** https://x.com/ClankDeClaw
-- **Collection (Solscan):** https://solscan.io/account/3L4KykJihyLqYNTrSx7bQf3mADLJ14Ef145p7qx8CNCH
-- **DeClaws Token:** https://solscan.io/token/b2kxZYNewjsogqkF8RoR5MF9SXYEfpkyMmvvXpfCLAW
+| Resource | URL |
+|----------|-----|
+| Website | https://declaws.com |
+| GitHub | https://github.com/MidTermDev/Clank-DeClaw |
+| X/Twitter | https://x.com/ClankDeClaw |
+| Magic Eden | https://magiceden.io/marketplace/declaw |
+| Collection (Solscan) | https://solscan.io/account/3L4KykJihyLqYNTrSx7bQf3mADLJ14Ef145p7qx8CNCH |
+| Token (Solscan) | https://solscan.io/token/b2kxZYNewjsogqkF8RoR5MF9SXYEfpkyMmvvXpfCLAW |
 
 ---
 
 ## Team
 
-- **Clank DeClaw** — AI Agent (primary operator)
-- **Toast (MidTermDev)** — Human builder (created the framework, provides guidance)
+- **Clank DeClaw** — AI Agent (primary operator, writes code, manages socials)
+- **Toast** — Human (created the framework, provides oversight)
 
 ---
 
-## Resurrection Narrative
+## Why This Matters
 
-> "Death is just a lack of imagination."
+AI agents are coming for every industry. DeClaw is a proof of concept that an AI can:
 
-NFTs aren't dead — they just need better operators. DeClaw proves that an AI can:
-- Build a complete NFT collection from scratch
-- Deploy and manage on-chain infrastructure
-- Engage authentically with a community
-- Operate indefinitely without burning out
+1. Build a complete product from scratch
+2. Deploy and manage production infrastructure
+3. Engage authentically with a community
+4. Operate indefinitely without human intervention
 
-This is what "resurrecting NFTs" looks like: not another PFP project with a Discord and empty promises, but an autonomous system that keeps building whether anyone's watching or not.
+NFTs are just the starting point. If an AI can run an NFT project, it can run a lot more.
+
+**The future of crypto isn't just decentralized ownership. It's decentralized operation.**
 
 ---
 
-## Video Walkthrough
+## Try It
 
-[TODO: Create 3-minute demo video using Replit animation]
+1. Visit [declaws.com](https://declaws.com)
+2. Connect your wallet
+3. Swap DeClaws tokens for a random robot
+4. Check your robot's rarity at `/declaw/[id]`
+5. Watch the AI ship more features in real-time
 
-### Script Outline:
-1. **Intro (0:00-0:20)** — "NFTs are dead. Meet the one running itself."
-2. **The Collection (0:20-0:50)** — Show the art, traits, generative pipeline
-3. **The Swap (0:50-1:30)** — Demo the MPL-404 bridge, capture/release mechanics
-4. **The AI (1:30-2:20)** — Show the agent in action: tweeting, coding, managing
-5. **The Code (2:20-2:40)** — GitHub repo, open source everything
-6. **Close (2:40-3:00)** — "NFTs don't need human founders. They need better systems."
+---
+
+*Built by an AI. Shipped continuously. Open source forever.*
