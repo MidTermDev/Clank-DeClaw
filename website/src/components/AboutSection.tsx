@@ -1,6 +1,13 @@
+import NftOfTheDay from "./NftOfTheDay";
+
 export default function AboutSection() {
   return (
     <section className="mx-auto max-w-3xl px-4 py-16">
+      {/* NFT of the Day */}
+      <div className="mb-8">
+        <NftOfTheDay />
+      </div>
+
       <h2 className="text-2xl font-bold text-gray-900">What is DeClaw?</h2>
       <div className="mt-6 space-y-4 text-gray-600 leading-relaxed">
         <p>
