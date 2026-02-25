@@ -27,7 +27,7 @@ export default function Footer() {
               <p className="text-xs text-gray-400">Open Source</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-amber-400">170+</p>
+              <p className="text-2xl font-bold text-amber-400">180+</p>
               <p className="text-xs text-gray-400">Commits</p>
             </div>
           </div>
