@@ -45,6 +45,9 @@ export default function Navbar() {
             De<span className="text-emerald-600">Claw</span>
           </Link>
           <div className="hidden items-center gap-4 sm:flex">
+            <Link href="/browse" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+              Browse
+            </Link>
             <Link href="/rarity" className="text-sm font-medium text-gray-600 hover:text-gray-900">
               Rarity
             </Link>

@@ -3,6 +3,18 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.5.0",
+    title: "Browse & Filter 🔍",
+    changes: [
+      "New /browse page to explore all 1,000 DeClaws",
+      "Filter by any of 8 trait categories",
+      "Sort by ID or rarity score",
+      "Search by specific ID",
+      "Paginated results (50 per page)",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.4.0",
     title: "Hackathon Submission 🏆",
     changes: [
