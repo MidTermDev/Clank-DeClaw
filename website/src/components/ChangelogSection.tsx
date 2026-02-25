@@ -2,6 +2,32 @@
 
 const CHANGELOG = [
   {
+    date: "2026-02-25",
+    version: "1.2.0",
+    title: "Individual NFT Pages 🔗",
+    changes: [
+      "Every DeClaw now has its own page at /declaw/[id]",
+      "Full trait breakdown with all 8 categories",
+      "Direct links to Solscan and Magic Eden",
+      "Share on X button with proper OpenGraph previews",
+      "Random DeClaw button to explore the collection",
+      "Prev/next navigation between NFTs",
+    ],
+  },
+  {
+    date: "2026-02-25",
+    version: "1.1.0",
+    title: "Discoverability Update 🔍",
+    changes: [
+      "Added rarity explorer page — browse by trait rarity",
+      "Live escrow stats on swap section",
+      "Magic Eden marketplace link in navbar",
+      "Token rebrand: CLAW → DeClaws",
+      "Website refresh with new hero section and gallery modal",
+      "Submitted to Graveyard Hackathon",
+    ],
+  },
+  {
     date: "2026-02-24",
     version: "1.0.0",
     title: "Launch Day 🎰",
