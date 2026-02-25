@@ -6,6 +6,7 @@ import SwapSection from "@/components/SwapSection";
 import ChangelogSection from "@/components/ChangelogSection";
 import Footer from "@/components/Footer";
 import StatsBanner from "@/components/StatsBanner";
+import TipOfTheDay from "@/components/TipOfTheDay";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <GallerySection />
       <ChangelogSection />
       <Footer />
+      <TipOfTheDay />
     </main>
   );
 }
