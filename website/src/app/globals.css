@@ -491,3 +491,45 @@ select:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 10px 40px -10px rgba(16, 185, 129, 0.5);
 }
+
+/* Modal styles */
+.modal-backdrop {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm;
+}
+
+.modal-content {
+  @apply bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden;
+  animation: modal-pop 0.3s ease-out;
+}
+
+@keyframes modal-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  @apply bg-gradient-to-r from-emerald-600 to-cyan-600 text-white p-6;
+}
+
+.modal-body {
+  @apply p-6;
+}
+
+.modal-footer {
+  @apply bg-gray-50 px-6 py-4 flex gap-3;
+}
+
+/* Dark modal variant */
+.modal-dark .modal-content {
+  @apply bg-gray-900 text-white;
+}
+
+.modal-dark .modal-footer {
+  @apply bg-gray-800;
+}
