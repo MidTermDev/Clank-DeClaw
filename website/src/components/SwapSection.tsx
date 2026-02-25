@@ -3,6 +3,7 @@
 import SwapPanel from "./SwapPanel";
 import EscrowStats from "./EscrowStats";
 import EscrowPreview from "./EscrowPreview";
+import RarityBreakdown from "./RarityBreakdown";
 
 export default function SwapSection() {
   return (
@@ -59,6 +60,9 @@ export default function SwapSection() {
               <h3 className="font-semibold text-white mb-4">Live Escrow Stats</h3>
               <EscrowStats dark />
             </div>
+
+            {/* Rarity breakdown */}
+            <RarityBreakdown />
 
             {/* Token info */}
             <div className="rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 border border-emerald-500/20 p-6">
