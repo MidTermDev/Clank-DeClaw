@@ -1,0 +1,157 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { getFavorites, removeFavorite } from "@/lib/favorites";
+import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { calculateRarityScore, getRarityTier, TRAIT_WEIGHTS } from "@/lib/rarity";
+
+interface FavoriteNft {
+  id: number;
+  traits: Record<string, string>;
+  rarityScore: number;
+}
+
+export default function FavoritesPage() {
+  const [favorites, setFavorites] = useState<FavoriteNft[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    loadFavorites();
+  }, []);
+
+  const loadFavorites = async () => {
+    const ids = getFavorites();
+    if (ids.length === 0) {
+      setFavorites([]);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/trait-manifest.json");
+      const manifest = await res.json();
+
+      const favNfts = ids.map((id) => {
+        const nft = manifest.find((n: { id: number }) => n.id === id);
+        if (!nft) return null;
+        return {
+          id: nft.id,
+          traits: nft.traits,
+          rarityScore: calculateRarityScore(nft.traits),
+        };
+      }).filter(Boolean) as FavoriteNft[];
+
+      setFavorites(favNfts);
+    } catch (err) {
+      console.error("Failed to load favorites:", err);
+    }
+    setLoading(false);
+  };
+
+  const handleRemove = (id: number) => {
+    removeFavorite(id);
+    setFavorites((prev) => prev.filter((f) => f.id !== id));
+  };
+
+  if (!mounted) {
+    return (
+      <main className="min-h-screen bg-white">
+        <Navbar />
+        <div className="flex items-center justify-center py-32">
+          <div className="animate-spin h-8 w-8 border-2 border-emerald-500 border-t-transparent rounded-full" />
+        </div>
+        <Footer />
+      </main>
+    );
+  }
+
+  return (
+    <main className="min-h-screen bg-white">
+      <Navbar />
+
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Your Favorites</h1>
+            <p className="mt-1 text-gray-500">
+              {favorites.length} saved DeClaw{favorites.length !== 1 ? "s" : ""}
+            </p>
+          </div>
+          {favorites.length > 0 && (
+            <Link
+              href="/compare"
+              className="text-sm text-emerald-600 hover:text-emerald-700"
+            >
+              Compare favorites →
+            </Link>
+          )}
+        </div>
+
+        {loading ? (
+          <div className="mt-12 flex items-center justify-center py-16">
+            <div className="animate-spin h-8 w-8 border-2 border-emerald-500 border-t-transparent rounded-full" />
+          </div>
+        ) : favorites.length === 0 ? (
+          <div className="mt-12 text-center py-16 rounded-xl bg-gray-50 border border-gray-100">
+            <p className="text-2xl">♡</p>
+            <p className="mt-4 text-gray-500">No favorites yet</p>
+            <p className="mt-2 text-sm text-gray-400">
+              Click the heart icon on any DeClaw to save it here
+            </p>
+            <Link
+              href="/browse"
+              className="mt-6 inline-block rounded-lg bg-emerald-600 px-6 py-2 text-sm font-medium text-white hover:bg-emerald-700"
+            >
+              Browse Collection
+            </Link>
+          </div>
+        ) : (
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {favorites.map((nft) => {
+              const tier = getRarityTier(nft.rarityScore);
+              return (
+                <div
+                  key={nft.id}
+                  className="group relative overflow-hidden rounded-xl border border-gray-100 bg-white hover:border-gray-200 hover:shadow-md transition-all"
+                >
+                  <Link href={`/declaw/${nft.id}`}>
+                    <div className="aspect-square bg-gray-50">
+                      <img
+                        src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
+                        alt={`DeClaw #${nft.id}`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-3">
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-gray-900">#{nft.id}</span>
+                        <span className={`text-xs font-medium ${tier.color}`}>
+                          {tier.label}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                  <button
+                    onClick={() => handleRemove(nft.id)}
+                    className="absolute top-2 right-2 p-1.5 rounded-lg bg-white/80 text-red-500 opacity-0 group-hover:opacity-100 hover:bg-red-50 transition-all"
+                    title="Remove from favorites"
+                  >
+                    ♥
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      <Footer />
+    </main>
+  );
+}

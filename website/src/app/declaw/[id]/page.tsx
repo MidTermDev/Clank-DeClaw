@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ShareButtons from "@/components/ShareButtons";
 import RandomDeclawButton from "@/components/RandomDeclawButton";
 import KeyboardNav from "@/components/KeyboardNav";
+import FavoriteButton from "@/components/FavoriteButton";
 import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import mintedAssets from "@/lib/minted-assets.json";
@@ -151,12 +152,17 @@ export default async function DeclawPage({ params }: Props) {
 
           {/* Details */}
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
-              DeClaw #{nftId}
-            </h1>
-            <p className="mt-2 text-gray-500">
-              One of 1,000 unique claw-machine robots
-            </p>
+            <div className="flex items-start justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">
+                  DeClaw #{nftId}
+                </h1>
+                <p className="mt-2 text-gray-500">
+                  One of 1,000 unique claw-machine robots
+                </p>
+              </div>
+              <FavoriteButton nftId={nftId} className="text-xl" />
+            </div>
 
             {/* Rarity Badge */}
             <Link 

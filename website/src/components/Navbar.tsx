@@ -55,6 +55,7 @@ function CloseIcon() {
 
 const NAV_LINKS = [
   { href: "/browse", label: "Browse" },
+  { href: "/favorites", label: "Favorites" },
   { href: "/compare", label: "Compare" },
   { href: "/rarity", label: "Rarity" },
   { href: "/agent", label: "Agent" },
