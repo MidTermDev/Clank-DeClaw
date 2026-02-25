@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RobotLoader from "@/components/RobotLoader";
 import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
 
 interface TraitData {
@@ -152,9 +153,7 @@ export default function RarityPage() {
     return (
       <main className="min-h-screen bg-white">
         <Navbar />
-        <div className="flex items-center justify-center py-32">
-          <div className="animate-spin h-8 w-8 border-2 border-emerald-500 border-t-transparent rounded-full" />
-        </div>
+        <RobotLoader text="Analyzing rarity data..." />
         <Footer />
       </main>
     );
