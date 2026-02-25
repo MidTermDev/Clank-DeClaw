@@ -87,19 +87,20 @@ export default function SearchBar() {
             <button
               key={result.id}
               onClick={() => handleSelect(result.id)}
-              className="flex items-center gap-3 w-full px-3 py-2 hover:bg-gray-50 text-left"
+              className="flex items-center gap-3 w-full px-3 py-2 hover:bg-gray-50 text-left group"
             >
               <img
                 src={`${IPFS_GATEWAY}/${IMAGES_CID}/${result.id}.png`}
                 alt={`DeClaw #${result.id}`}
-                className="w-10 h-10 rounded-lg object-cover"
+                className="w-10 h-10 rounded-lg object-cover group-hover:scale-110 transition-transform"
               />
-              <div>
+              <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900">DeClaw #{result.id}</p>
                 {result.matchText && (
                   <p className="text-xs text-gray-500">{result.matchText}</p>
                 )}
               </div>
+              <span className="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
             </button>
           ))}
         </div>
