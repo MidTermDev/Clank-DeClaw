@@ -46,9 +46,14 @@ export default function NftOfTheDay() {
   const tier = getRarityTier(rarityScore);
 
   return (
-    <div className="rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 p-4">
+    <div className="rounded-xl bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 p-4 relative overflow-hidden">
+      {/* Animated sparkles */}
+      <div className="absolute top-2 right-8 text-amber-400 animate-pulse">✦</div>
+      <div className="absolute top-6 right-4 text-amber-300 animate-pulse" style={{ animationDelay: '0.5s' }}>✧</div>
+      <div className="absolute bottom-4 right-12 text-amber-400 animate-pulse" style={{ animationDelay: '1s' }}>✦</div>
+      
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-lg">⭐</span>
+        <span className="text-lg animate-bounce">⭐</span>
         <h3 className="font-semibold text-amber-900">NFT of the Day</h3>
       </div>
       <Link href={`/declaw/${nft.id}`} className="flex items-center gap-4 group">
