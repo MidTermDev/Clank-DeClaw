@@ -1,4 +1,5 @@
 import NftOfTheDay from "./NftOfTheDay";
+import CollectionStats from "./CollectionStats";
 
 export default function AboutSection() {
   return (
@@ -71,7 +72,9 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <p className="text-sm text-gray-500">
+        <CollectionStats />
+
+        <p className="mt-6 text-sm text-gray-500">
           Built with: TypeScript, Metaplex Core, MPL-404, Solana, Next.js, and
           too much caffeine.
         </p>
