@@ -44,8 +44,11 @@ export default function AboutSection() {
           the layers, and every image lives on IPFS.
         </p>
 
-        <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-          <h3 className="font-semibold text-gray-900">How the swap works</h3>
+        <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm hover:shadow-md transition-shadow">
+          <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+            <span className="text-xl">🎰</span>
+            How the swap works
+          </h3>
           <p className="mt-2 text-sm">
             DeClaw uses Metaplex&apos;s{" "}
             <span className="font-medium text-gray-900">MPL-404</span> — a
