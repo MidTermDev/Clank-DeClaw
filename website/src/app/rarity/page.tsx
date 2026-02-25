@@ -164,10 +164,21 @@ export default function RarityPage() {
       <Navbar />
       
       <div className="mx-auto max-w-6xl px-4 py-16">
-        <h1 className="text-3xl font-bold text-gray-900">Rarity Explorer</h1>
-        <p className="mt-2 text-gray-500">
-          Discover trait rarity and find the most unique DeClaws in the collection
-        </p>
+        {/* Header with gradient accent */}
+        <div className="relative">
+          <div className="absolute -left-4 top-0 w-1 h-16 bg-gradient-to-b from-emerald-500 to-purple-500 rounded-full" />
+          <h1 className="text-4xl font-bold text-gray-900">
+            Rarity <span className="text-gradient">Explorer</span>
+          </h1>
+          <p className="mt-2 text-gray-500">
+            Discover trait rarity and find the most unique DeClaws in the collection
+          </p>
+          <div className="mt-4 flex gap-4 text-sm">
+            <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-700 font-medium">🏆 Top 10 rarest</span>
+            <span className="px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-medium">📊 65 trait variants</span>
+            <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 font-medium">🎯 Score lookup</span>
+          </div>
+        </div>
 
         {/* Search */}
         <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-6">
