@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { GALLERY_IDS, imageUrl, metadataUrl } from "@/lib/constants";
 
 interface NftMeta {
@@ -125,12 +126,20 @@ export default function GallerySection() {
                 ))}
               </div>
             </div>
-            <button
-              onClick={() => setSelectedNft(null)}
-              className="mt-6 w-full rounded-lg bg-gray-900 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800"
-            >
-              Close
-            </button>
+            <div className="mt-6 flex gap-3">
+              <Link
+                href={`/declaw/${selectedNft.id}`}
+                className="flex-1 rounded-lg bg-emerald-600 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-emerald-700"
+              >
+                View Full Page
+              </Link>
+              <button
+                onClick={() => setSelectedNft(null)}
+                className="flex-1 rounded-lg bg-gray-200 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
