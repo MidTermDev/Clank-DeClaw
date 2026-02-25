@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, TRAIT_WEIGHTS } from "@/lib/rarity";
 import SearchBar from "@/components/SearchBar";
+import RobotLoader from "@/components/RobotLoader";
 
 interface NftData {
   id: number;
@@ -95,9 +96,7 @@ export default function BrowsePage() {
     return (
       <main className="min-h-screen bg-white">
         <Navbar />
-        <div className="flex items-center justify-center py-32">
-          <div className="animate-spin h-8 w-8 border-2 border-emerald-500 border-t-transparent rounded-full" />
-        </div>
+        <RobotLoader text="Loading collection..." />
         <Footer />
       </main>
     );
