@@ -11,6 +11,7 @@ import SimilarNfts from "@/components/SimilarNfts";
 import TrackView from "@/components/TrackView";
 import CopyAddressButton from "@/components/CopyAddressButton";
 import SwipeHint from "@/components/SwipeHint";
+import LegendaryConfetti from "@/components/LegendaryConfetti";
 import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import { getTraitIcon } from "@/lib/traitIcons";
@@ -122,6 +123,7 @@ export default async function DeclawPage({ params }: Props) {
       <TrackView nftId={nftId} />
       <KeyboardNav prevId={prevId} nextId={nextId} />
       <SwipeHint prevId={prevId} nextId={nextId} />
+      <LegendaryConfetti rarityScore={rarityScore} nftId={nftId} />
       
       <div className="mx-auto max-w-4xl px-4 py-12">
         {/* Navigation */}
