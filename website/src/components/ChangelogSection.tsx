@@ -3,6 +3,18 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.9.2",
+    title: "Swap Experience ⭐",
+    changes: [
+      "Escrow preview — see robots waiting",
+      "Rarity capture odds breakdown",
+      "Pulsing capture button",
+      "NFT of the Day feature",
+      "Mobile swipe hints",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.9.1",
     title: "UX Refinements 🎯",
     changes: [
