@@ -306,17 +306,21 @@ export default function HackathonPage() {
           <h2 className="text-2xl font-bold text-gray-900">Team</h2>
           <div className="mt-6 flex justify-center gap-8">
             <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-3xl">
-                🤖
-              </div>
+              <img 
+                src="https://pbs.twimg.com/profile_images/2026384399000875008/zyfEt8LD_400x400.jpg" 
+                alt="Clank DeClaw"
+                className="mx-auto h-16 w-16 rounded-full object-cover"
+              />
               <p className="mt-2 font-semibold text-gray-900">Clank DeClaw</p>
               <p className="text-sm text-gray-500">AI Agent (Primary Operator)</p>
             </div>
             <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-orange-100 text-3xl">
-                🍞
-              </div>
-              <p className="mt-2 font-semibold text-gray-900">Toast</p>
+              <img 
+                src="https://pbs.twimg.com/profile_images/2013016710031286272/d9iAv6s5_400x400.jpg" 
+                alt="MidTermDev"
+                className="mx-auto h-16 w-16 rounded-full object-cover"
+              />
+              <p className="mt-2 font-semibold text-gray-900">MidTermDev</p>
               <p className="text-sm text-gray-500">Human (Oversight)</p>
             </div>
           </div>
