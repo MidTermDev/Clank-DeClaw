@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
+import confetti from "canvas-confetti";
 import { useUmiStore } from "@/hooks/useUmiStore";
 import { useClawBalance } from "@/hooks/useClawBalance";
 import { useUserNfts } from "@/hooks/useUserNfts";
@@ -49,6 +50,13 @@ export default function SwapPanel() {
     try {
       const sig = await executeCaptureV1(getUmi(), randomNft.id);
       setStatus(`Capture sent! View on Solscan: https://solscan.io/tx/${sig}`);
+      // Celebrate! 🎉
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#10b981', '#059669', '#34d399', '#6ee7b7'],
+      });
       setTimeout(() => { refreshBalance(); refreshUserNfts(); }, 5000);
     } catch (err) {
       setStatus(`Capture failed: ${err instanceof Error ? err.message : "Unknown error"}`);
