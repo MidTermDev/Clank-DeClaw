@@ -12,6 +12,7 @@ import TrackView from "@/components/TrackView";
 import CopyAddressButton from "@/components/CopyAddressButton";
 import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
+import { getTraitIcon } from "@/lib/traitIcons";
 import mintedAssets from "@/lib/minted-assets.json";
 
 interface Props {
@@ -195,7 +196,8 @@ export default async function DeclawPage({ params }: Props) {
                         className="rounded-xl bg-gray-50 p-3 border border-gray-100"
                       >
                         <div className="flex items-center justify-between">
-                          <p className="text-xs text-gray-400 uppercase tracking-wide">
+                          <p className="text-xs text-gray-400 uppercase tracking-wide flex items-center gap-1">
+                            <span>{getTraitIcon(attr.trait_type)}</span>
                             {attr.trait_type}
                           </p>
                           <span className="text-xs text-gray-400">
