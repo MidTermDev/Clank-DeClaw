@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ESCROW_ADDRESS, CLAW_TOKEN_MINT } from "@/lib/constants";
-import { useUmiStore } from "@/hooks/useUmiStore";
+import { CLAW_TOKEN_MINT, ESCROW_ADDRESS, RPC_URL } from "@/lib/constants";
+import { fetchEscrowNfts } from "@/lib/das";
 
 interface EscrowData {
   nftsInEscrow: number;
@@ -12,7 +12,6 @@ interface EscrowData {
 }
 
 export default function EscrowStats() {
-  const getUmi = useUmiStore((s) => s.getUmi);
   const [data, setData] = useState<EscrowData>({
     nftsInEscrow: 0,
     tokenBalance: 0,
@@ -23,10 +22,12 @@ export default function EscrowStats() {
   useEffect(() => {
     async function fetchEscrowData() {
       try {
-        const endpoint = getUmi().rpc.getEndpoint();
+        // Fetch NFT count via DAS API (Core assets, not SPL tokens)
+        const nfts = await fetchEscrowNfts();
+        const nftCount = nfts.length;
 
-        // Direct JSON-RPC call to get parsed token accounts (no Connection / no WebSocket)
-        const res = await fetch(endpoint, {
+        // Fetch DeClaws token balance via JSON-RPC
+        const res = await fetch(RPC_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -35,7 +36,7 @@ export default function EscrowStats() {
             method: "getTokenAccountsByOwner",
             params: [
               ESCROW_ADDRESS,
-              { programId: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA" },
+              { mint: CLAW_TOKEN_MINT },
               { encoding: "jsonParsed" },
             ],
           }),
@@ -43,22 +44,9 @@ export default function EscrowStats() {
 
         const json = await res.json();
         const accounts = json.result?.value ?? [];
-
-        let nftCount = 0;
         let tokenBalance = 0;
-
-        for (const { account } of accounts) {
-          const parsed = account.data.parsed?.info;
-          if (!parsed) continue;
-
-          const mint = parsed.mint;
-          const amount = parsed.tokenAmount;
-
-          if (mint === CLAW_TOKEN_MINT) {
-            tokenBalance = amount.uiAmount || 0;
-          } else if (amount.decimals === 0 && amount.uiAmount === 1) {
-            nftCount++;
-          }
+        if (accounts.length > 0) {
+          tokenBalance = accounts[0].account.data.parsed?.info?.tokenAmount?.uiAmount || 0;
         }
 
         setData({
@@ -82,7 +70,7 @@ export default function EscrowStats() {
     // Refresh every 30 seconds
     const interval = setInterval(fetchEscrowData, 30000);
     return () => clearInterval(interval);
-  }, [getUmi]);
+  }, []);
 
   if (data.loading) {
     return (
