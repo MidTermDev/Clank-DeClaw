@@ -248,6 +248,16 @@ export default async function DeclawPage({ params }: Props) {
               <h2 className="text-sm font-medium text-gray-700 mb-3">Share & Download</h2>
               <ShareButtons nftId={nftId} />
             </div>
+
+            {/* Quick Actions */}
+            <div className="mt-4">
+              <Link
+                href={`/compare?nfts=${nftId}`}
+                className="inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700"
+              >
+                📊 Add to Compare →
+              </Link>
+            </div>
           </div>
         </div>
 
