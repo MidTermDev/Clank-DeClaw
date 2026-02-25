@@ -82,7 +82,7 @@ export default function GallerySection() {
           <button
             key={nft.id}
             onClick={() => setSelectedNft(nft)}
-            className="nft-card overflow-hidden rounded-lg border border-gray-100 bg-gray-50 text-left transition-all hover:border-emerald-200"
+            className="nft-card shine-effect overflow-hidden rounded-xl border border-gray-100 bg-white text-left transition-all hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-100"
           >
             <div className="relative aspect-square">
               <Image
