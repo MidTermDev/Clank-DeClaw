@@ -3,6 +3,18 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.9.1",
+    title: "UX Refinements 🎯",
+    changes: [
+      "Copy address button on NFT pages",
+      "Sort favorites by rarity",
+      "Trait icons (🎨🤖📦🦀👁️🎩✨😀)",
+      "Animated stat counters",
+      "Reusable skeleton & tooltip components",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.9.0",
     title: "Polish & Delight ✨",
     changes: [
