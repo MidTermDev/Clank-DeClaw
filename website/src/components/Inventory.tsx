@@ -36,12 +36,14 @@ export default function Inventory() {
       {/* Backpack Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-gray-900 px-4 py-3 text-white shadow-lg hover:bg-gray-800 transition-all hover:scale-105"
+        className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full bg-gray-900 px-4 py-3 text-white shadow-lg hover:bg-gray-800 transition-all hover:scale-105 group"
       >
         <BackpackIcon />
         <span className="text-sm font-medium">
           {nfts.length} NFT{nfts.length !== 1 ? "s" : ""}
         </span>
+        {/* Pulse ring */}
+        <span className="absolute -inset-1 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity" />
       </button>
 
       {/* Inventory Panel */}
