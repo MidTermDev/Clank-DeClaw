@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ShareButtons from "@/components/ShareButtons";
 import RandomDeclawButton from "@/components/RandomDeclawButton";
 import { imageUrl, metadataUrl } from "@/lib/constants";
+import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import mintedAssets from "@/lib/minted-assets.json";
 
 interface Props {
@@ -95,6 +96,16 @@ export default async function DeclawPage({ params }: Props) {
   const assetAddress = getAssetAddress(nftId);
   const image = imageUrl(nftId);
 
+  // Calculate rarity from traits
+  const traits: Record<string, string> = {};
+  if (metadata?.attributes) {
+    for (const attr of metadata.attributes) {
+      traits[attr.trait_type] = attr.value;
+    }
+  }
+  const rarityScore = calculateRarityScore(traits);
+  const rarityTier = getRarityTier(rarityScore);
+
   const prevId = nftId > 0 ? nftId - 1 : 999;
   const nextId = nftId < 999 ? nftId + 1 : 0;
 
@@ -145,24 +156,46 @@ export default async function DeclawPage({ params }: Props) {
               One of 1,000 unique claw-machine robots
             </p>
 
+            {/* Rarity Badge */}
+            <Link 
+              href="/rarity"
+              className={`mt-4 inline-flex items-center gap-3 rounded-xl px-4 py-2 border ${rarityTier.bgColor} hover:opacity-80 transition-opacity`}
+            >
+              <span className={`text-lg font-bold ${rarityTier.color}`}>
+                {rarityTier.label}
+              </span>
+              <span className="text-sm text-gray-500">
+                Score: {rarityScore}
+              </span>
+              <span className="text-xs text-gray-400">→ Explorer</span>
+            </Link>
+
             {/* Traits */}
             {metadata?.attributes && metadata.attributes.length > 0 && (
-              <div className="mt-8">
+              <div className="mt-6">
                 <h2 className="text-sm font-medium text-gray-700 mb-3">Traits</h2>
                 <div className="grid grid-cols-2 gap-3">
-                  {metadata.attributes.map((attr) => (
-                    <div
-                      key={attr.trait_type}
-                      className="rounded-xl bg-gray-50 p-3 border border-gray-100"
-                    >
-                      <p className="text-xs text-gray-400 uppercase tracking-wide">
-                        {attr.trait_type}
-                      </p>
-                      <p className="mt-1 text-sm font-medium text-gray-900">
-                        {attr.value}
-                      </p>
-                    </div>
-                  ))}
+                  {metadata.attributes.map((attr) => {
+                    const traitRarity = getTraitRarity(attr.trait_type, attr.value);
+                    return (
+                      <div
+                        key={attr.trait_type}
+                        className="rounded-xl bg-gray-50 p-3 border border-gray-100"
+                      >
+                        <div className="flex items-center justify-between">
+                          <p className="text-xs text-gray-400 uppercase tracking-wide">
+                            {attr.trait_type}
+                          </p>
+                          <span className="text-xs text-gray-400">
+                            {traitRarity.percentage.toFixed(0)}%
+                          </span>
+                        </div>
+                        <p className="mt-1 text-sm font-medium text-gray-900">
+                          {attr.value}
+                        </p>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
