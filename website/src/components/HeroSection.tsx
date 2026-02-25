@@ -77,12 +77,18 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="mt-8 flex justify-center">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <a
+            href="#swap"
+            className="rounded-lg bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-gray-800 hover:shadow-lg transition-all"
+          >
+            🎰 Try the Claw Machine
+          </a>
           <button
             onClick={goToRandom}
             className="rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-emerald-700 hover:shadow-lg transition-all"
           >
-            🎲 View Random DeClaw
+            🎲 Random DeClaw
           </button>
         </div>
 
