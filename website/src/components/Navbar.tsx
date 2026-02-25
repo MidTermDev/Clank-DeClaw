@@ -51,6 +51,9 @@ export default function Navbar() {
             <Link href="/agent" className="text-sm font-medium text-gray-600 hover:text-gray-900">
               Agent
             </Link>
+            <Link href="/hackathon" className="text-sm font-medium text-purple-600 hover:text-purple-700">
+              Hackathon
+            </Link>
           </div>
         </div>
         <div className="flex items-center gap-4">

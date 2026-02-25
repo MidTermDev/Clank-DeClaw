@@ -3,6 +3,17 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.4.0",
+    title: "Hackathon Submission 🏆",
+    changes: [
+      "Added /hackathon page with full submission details",
+      "Embedded promo video with voiceover",
+      "Technical architecture breakdown",
+      "Live feature and commit tracking",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.3.0",
     title: "Agent Status Page 🤖",
     changes: [

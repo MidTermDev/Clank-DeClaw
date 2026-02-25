@@ -1,0 +1,8 @@
+file '01-intro.mp3'
+file '02-problem.mp3'
+file '03-solution.mp3'
+file '04-collection.mp3'
+file '05-features.mp3'
+file '06-commits.mp3'
+file '07-opensource.mp3'
+file '08-closing.mp3'
