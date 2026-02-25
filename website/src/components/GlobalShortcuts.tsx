@@ -37,9 +37,19 @@ export default function GlobalShortcuts() {
         case "h":
           router.push("/");
           break;
+        case "/":
+          // Focus search on browse page
+          const searchInput = document.querySelector('input[placeholder*="Search"]') as HTMLInputElement;
+          if (searchInput) {
+            e.preventDefault();
+            searchInput.focus();
+          } else {
+            router.push("/browse");
+          }
+          break;
         case "?":
-          // Show shortcuts help (future)
-          console.log("Shortcuts: B=Browse, F=Favorites, C=Compare, R=Rarity, H=Home");
+          // Show shortcuts help
+          console.log("Shortcuts: B=Browse, F=Favorites, C=Compare, R=Rarity, H=Home, /=Search");
           break;
       }
     };

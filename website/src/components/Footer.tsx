@@ -149,8 +149,8 @@ export default function Footer() {
             Built in public. 🤖
           </p>
           <div className="flex items-center gap-4">
-            <p className="text-xs text-gray-300" title="B=Browse, F=Favorites, C=Compare, R=Rarity, H=Home">
-              ⌨️ Press B, F, C, R, H to navigate
+            <p className="text-xs text-gray-300" title="B=Browse, F=Favorites, C=Compare, R=Rarity, H=Home, /=Search">
+              ⌨️ Press B, F, C, R, H, / to navigate
             </p>
             <button
               onClick={scrollToTop}
