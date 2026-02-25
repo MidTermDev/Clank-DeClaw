@@ -7,6 +7,7 @@ import ShareButtons from "@/components/ShareButtons";
 import RandomDeclawButton from "@/components/RandomDeclawButton";
 import KeyboardNav from "@/components/KeyboardNav";
 import FavoriteButton from "@/components/FavoriteButton";
+import SimilarNfts from "@/components/SimilarNfts";
 import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import mintedAssets from "@/lib/minted-assets.json";
@@ -239,6 +240,9 @@ export default async function DeclawPage({ params }: Props) {
             </div>
           </div>
         </div>
+
+        {/* Similar NFTs */}
+        <SimilarNfts currentId={nftId} traits={traits} />
 
         {/* Random */}
         <div className="mt-12 text-center">
