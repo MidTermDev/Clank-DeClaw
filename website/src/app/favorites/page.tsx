@@ -132,11 +132,13 @@ export default function FavoritesPage() {
             <div className="animate-spin h-8 w-8 border-2 border-emerald-500 border-t-transparent rounded-full" />
           </div>
         ) : favorites.length === 0 ? (
-          <div className="mt-12 text-center py-16 rounded-xl bg-gray-50 border border-gray-100">
-            <p className="text-2xl">♡</p>
-            <p className="mt-4 text-gray-500">No favorites yet</p>
-            <p className="mt-2 text-sm text-gray-400">
-              Click the heart icon on any DeClaw to save it here
+          <div className="mt-12 text-center py-16 rounded-2xl bg-gradient-to-br from-pink-50 to-red-50 border border-pink-100">
+            <div className="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-4">
+              <span className="text-4xl animate-pulse">💔</span>
+            </div>
+            <p className="text-xl font-semibold text-gray-800">No favorites yet</p>
+            <p className="mt-2 text-gray-500 max-w-xs mx-auto">
+              Explore the collection and click the heart icon on any DeClaw to save it here
             </p>
             <Link
               href="/browse"
