@@ -3,6 +3,17 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.3.0",
+    title: "Agent Status Page 🤖",
+    changes: [
+      "New /agent page showing AI capabilities and activity",
+      "Recent commits feed from GitHub",
+      "How it works explainer",
+      "Updated hackathon submission materials",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.2.2",
     title: "Navigation Upgrades 🎮",
     changes: [
