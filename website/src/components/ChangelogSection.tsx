@@ -3,6 +3,16 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.7.1",
+    title: "Stats & Downloads 📊",
+    changes: [
+      "Live stats banner showing escrow status",
+      "Download PNG button on every NFT page",
+      "Auto-refreshing collection stats",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.7.0",
     title: "Favorites & Discovery ♥",
     changes: [
