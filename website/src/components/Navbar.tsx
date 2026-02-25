@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { SOCIAL_LINKS } from "@/lib/constants";
@@ -36,7 +37,32 @@ function MagicEdenIcon() {
   );
 }
 
+function MenuIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M6 6l12 12M6 18L18 6" />
+    </svg>
+  );
+}
+
+const NAV_LINKS = [
+  { href: "/browse", label: "Browse" },
+  { href: "/rarity", label: "Rarity" },
+  { href: "/agent", label: "Agent" },
+  { href: "/hackathon", label: "Hackathon", highlight: true },
+];
+
 export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
@@ -44,37 +70,41 @@ export default function Navbar() {
           <Link href="/" className="text-xl font-bold tracking-tight text-gray-900">
             De<span className="text-emerald-600">Claw</span>
           </Link>
-          <div className="hidden items-center gap-4 sm:flex">
-            <Link href="/browse" className="text-sm font-medium text-gray-600 hover:text-gray-900">
-              Browse
-            </Link>
-            <Link href="/rarity" className="text-sm font-medium text-gray-600 hover:text-gray-900">
-              Rarity
-            </Link>
-            <Link href="/agent" className="text-sm font-medium text-gray-600 hover:text-gray-900">
-              Agent
-            </Link>
-            <Link href="/hackathon" className="text-sm font-medium text-purple-600 hover:text-purple-700">
-              Hackathon
-            </Link>
+          {/* Desktop nav */}
+          <div className="hidden items-center gap-4 md:flex">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium ${
+                  link.highlight
+                    ? "text-purple-600 hover:text-purple-700"
+                    : "text-gray-600 hover:text-gray-900"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
-        <div className="flex items-center gap-4">
+
+        <div className="flex items-center gap-3">
+          {/* Desktop extras */}
           <a
             href="https://magiceden.io/marketplace/declaw"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-lg bg-purple-100 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors hover:bg-purple-200"
+            className="hidden sm:flex items-center gap-1.5 rounded-lg bg-purple-100 px-3 py-1.5 text-sm font-medium text-purple-700 transition-colors hover:bg-purple-200"
             aria-label="Magic Eden"
           >
             <MagicEdenIcon />
-            <span className="hidden sm:inline">Magic Eden</span>
+            <span className="hidden lg:inline">Magic Eden</span>
           </a>
           <a
             href={SOCIAL_LINKS.twitter}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 transition-colors hover:text-gray-900"
+            className="hidden sm:block text-gray-500 transition-colors hover:text-gray-900"
             aria-label="X / Twitter"
           >
             <XIcon />
@@ -83,14 +113,72 @@ export default function Navbar() {
             href={SOCIAL_LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-500 transition-colors hover:text-gray-900"
+            className="hidden sm:block text-gray-500 transition-colors hover:text-gray-900"
             aria-label="GitHub"
           >
             <GitHubIcon />
           </a>
           <WalletMultiButton />
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-1 text-gray-600"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-gray-100 bg-white">
+          <div className="px-4 py-3 space-y-2">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block py-2 text-sm font-medium ${
+                  link.highlight
+                    ? "text-purple-600"
+                    : "text-gray-600"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="pt-2 border-t border-gray-100 flex items-center gap-4">
+              <a
+                href="https://magiceden.io/marketplace/declaw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-sm text-purple-600"
+              >
+                <MagicEdenIcon />
+                Magic Eden
+              </a>
+              <a
+                href={SOCIAL_LINKS.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500"
+              >
+                <XIcon />
+              </a>
+              <a
+                href={SOCIAL_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500"
+              >
+                <GitHubIcon />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

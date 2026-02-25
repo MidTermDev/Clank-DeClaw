@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GALLERY_IDS, imageUrl, metadataUrl } from "@/lib/constants";
+import QuickJump from "./QuickJump";
 
 interface NftMeta {
   id: number;
@@ -46,10 +47,18 @@ export default function GallerySection() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-16">
-      <h2 className="text-2xl font-bold text-gray-900">Gallery</h2>
-      <p className="mt-2 text-gray-500">
-        A curated sample from the collection — click any robot for details
-      </p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">Gallery</h2>
+          <p className="mt-1 text-gray-500">
+            A curated sample — or{" "}
+            <Link href="/browse" className="text-emerald-600 hover:text-emerald-700 underline">
+              browse all 1,000
+            </Link>
+          </p>
+        </div>
+        <QuickJump />
+      </div>
       
       <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {nfts.map((nft) => (
