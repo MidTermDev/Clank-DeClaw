@@ -54,7 +54,7 @@ export default function HeroSection() {
         </div>
 
         <h1 className="text-6xl font-bold tracking-tight text-gray-900 sm:text-7xl md:text-8xl">
-          De<span className="text-emerald-600">Claw</span>
+          De<span className="text-gradient">Claw</span>
         </h1>
         
         <p className="mt-4 text-xl text-gray-500 sm:text-2xl">
