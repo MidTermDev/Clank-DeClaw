@@ -6,6 +6,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import KonamiCode from "@/components/KonamiCode";
 import Inventory from "@/components/Inventory";
 import BackToTop from "@/components/BackToTop";
+import ShortcutsHelp from "@/components/ShortcutsHelp";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,6 +34,7 @@ export default function RootLayout({
           <KonamiCode />
           <Inventory />
           <BackToTop />
+          <ShortcutsHelp />
           {children}
         </Providers>
       </body>
