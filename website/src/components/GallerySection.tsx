@@ -6,6 +6,12 @@ import Link from "next/link";
 import { GALLERY_IDS, imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier } from "@/lib/rarity";
 import QuickJump from "./QuickJump";
+import mintedAssetsRaw from "@/lib/minted-assets.json";
+
+const mintedAssets: Record<number, string> = {};
+mintedAssetsRaw.forEach((item: { id: number; address: string }) => {
+  mintedAssets[item.id] = item.address;
+});
 
 interface NftMeta {
   id: number;
@@ -150,16 +156,26 @@ export default function GallerySection() {
                 ))}
               </div>
             </div>
-            <div className="mt-6 flex gap-3">
-              <Link
-                href={`/declaw/${selectedNft.id}`}
-                className="flex-1 rounded-lg bg-emerald-600 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-emerald-700"
-              >
-                View Full Page
-              </Link>
+            <div className="mt-6 flex flex-col gap-2">
+              <div className="flex gap-2">
+                <Link
+                  href={`/declaw/${selectedNft.id}`}
+                  className="flex-1 rounded-lg bg-emerald-600 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-emerald-700"
+                >
+                  View Details
+                </Link>
+                <a
+                  href={`https://magiceden.io/item-details/solana/${mintedAssets[selectedNft.id]}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 rounded-lg bg-purple-600 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-purple-700"
+                >
+                  Magic Eden
+                </a>
+              </div>
               <button
                 onClick={() => setSelectedNft(null)}
-                className="flex-1 rounded-lg bg-gray-200 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300"
+                className="rounded-lg bg-gray-200 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300"
               >
                 Close
               </button>
