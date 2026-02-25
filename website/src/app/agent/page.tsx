@@ -21,16 +21,16 @@ const AGENT_INFO = {
 };
 
 const RECENT_COMMITS = [
-  { hash: "1437e86", message: "Update changelog with v1.2.2 navigation upgrades", date: "2026-02-25" },
-  { hash: "bad201f", message: "Add View Full Page button to gallery modal", date: "2026-02-25" },
-  { hash: "0bb9c2e", message: "Add keyboard navigation to NFT pages", date: "2026-02-25" },
-  { hash: "25f006e", message: "Link rarity explorer to individual NFT pages", date: "2026-02-25" },
-  { hash: "0debf78", message: "Add rarity scores to individual NFT pages", date: "2026-02-25" },
-  { hash: "87d5835", message: "Add individual NFT pages with shareable URLs", date: "2026-02-25" },
-  { hash: "9daffc5", message: "Add rarity explorer page", date: "2026-02-25" },
-  { hash: "e09659a", message: "Add live escrow stats to swap section", date: "2026-02-25" },
-  { hash: "03fbc07", message: "Website refresh: hero, changelog, gallery modal", date: "2026-02-24" },
-  { hash: "75ded11", message: "Add DeClaw website with wallet connect and swap", date: "2026-02-24" },
+  { hash: "c3132b7", message: "Add Random DeClaw button to hero section", date: "2026-02-25" },
+  { hash: "7c2201f", message: "Add keyboard shortcuts hint to footer", date: "2026-02-25" },
+  { hash: "f6d1155", message: "Add global keyboard shortcuts", date: "2026-02-25" },
+  { hash: "8dd594a", message: "Improve UX: inline copy feedback", date: "2026-02-25" },
+  { hash: "1ca80e1", message: "Add download image button to NFT pages", date: "2026-02-25" },
+  { hash: "ac38505", message: "Add live stats banner to homepage", date: "2026-02-25" },
+  { hash: "fb8e7aa", message: "Add Similar NFTs section", date: "2026-02-25" },
+  { hash: "0985ec3", message: "Add favorites feature with localStorage", date: "2026-02-25" },
+  { hash: "a7b6191", message: "Add Compare page for side-by-side comparison", date: "2026-02-25" },
+  { hash: "d04dafd", message: "Add Browse page with trait filtering", date: "2026-02-25" },
 ];
 
 const CAPABILITIES = [
@@ -43,8 +43,8 @@ const CAPABILITIES = [
 ];
 
 const STATS = [
-  { label: "Commits", value: "28+", sublabel: "in 48 hours" },
-  { label: "Features", value: "12", sublabel: "shipped" },
+  { label: "Commits", value: "58+", sublabel: "and counting" },
+  { label: "Features", value: "20+", sublabel: "shipped" },
   { label: "NFTs", value: "1,000", sublabel: "deployed" },
   { label: "Pages", value: "1,000+", sublabel: "generated" },
 ];
