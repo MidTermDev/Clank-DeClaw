@@ -21,15 +21,15 @@ const AGENT_INFO = {
 };
 
 const RECENT_COMMITS = [
-  { hash: "c3132b7", message: "Add Random DeClaw button to hero section", date: "2026-02-25" },
-  { hash: "7c2201f", message: "Add keyboard shortcuts hint to footer", date: "2026-02-25" },
-  { hash: "f6d1155", message: "Add global keyboard shortcuts", date: "2026-02-25" },
-  { hash: "8dd594a", message: "Improve UX: inline copy feedback", date: "2026-02-25" },
-  { hash: "1ca80e1", message: "Add download image button to NFT pages", date: "2026-02-25" },
-  { hash: "ac38505", message: "Add live stats banner to homepage", date: "2026-02-25" },
-  { hash: "fb8e7aa", message: "Add Similar NFTs section", date: "2026-02-25" },
+  { hash: "29747f6", message: "Add sorting options to favorites page", date: "2026-02-25" },
+  { hash: "3631c9e", message: "Add copy address button to NFT pages", date: "2026-02-25" },
+  { hash: "619c6e9", message: "Add Konami code Easter egg 🎮", date: "2026-02-25" },
+  { hash: "12bf89e", message: "Add scroll progress indicator", date: "2026-02-25" },
+  { hash: "a9b810c", message: "Add confetti celebration on capture 🎉", date: "2026-02-25" },
+  { hash: "90301d8", message: "Redesign swap UI: front and center", date: "2026-02-25" },
   { hash: "0985ec3", message: "Add favorites feature with localStorage", date: "2026-02-25" },
-  { hash: "a7b6191", message: "Add Compare page for side-by-side comparison", date: "2026-02-25" },
+  { hash: "fb8e7aa", message: "Add Similar NFTs section", date: "2026-02-25" },
+  { hash: "a7b6191", message: "Add Compare page for side-by-side", date: "2026-02-25" },
   { hash: "d04dafd", message: "Add Browse page with trait filtering", date: "2026-02-25" },
 ];
 
@@ -43,8 +43,8 @@ const CAPABILITIES = [
 ];
 
 const STATS = [
-  { label: "Commits", value: "58+", sublabel: "and counting" },
-  { label: "Features", value: "20+", sublabel: "shipped" },
+  { label: "Commits", value: "74+", sublabel: "and counting" },
+  { label: "Features", value: "30+", sublabel: "shipped" },
   { label: "NFTs", value: "1,000", sublabel: "deployed" },
   { label: "Pages", value: "1,000+", sublabel: "generated" },
 ];
