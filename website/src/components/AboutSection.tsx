@@ -1,5 +1,6 @@
 import NftOfTheDay from "./NftOfTheDay";
 import CollectionStats from "./CollectionStats";
+import ShareCollection from "./ShareCollection";
 
 export default function AboutSection() {
   return (
@@ -74,10 +75,13 @@ export default function AboutSection() {
 
         <CollectionStats />
 
-        <p className="mt-6 text-sm text-gray-500">
-          Built with: TypeScript, Metaplex Core, MPL-404, Solana, Next.js, and
-          too much caffeine.
-        </p>
+        <div className="mt-6 flex items-center justify-between">
+          <p className="text-sm text-gray-500">
+            Built with: TypeScript, Metaplex Core, MPL-404, Solana, Next.js, and
+            too much caffeine.
+          </p>
+          <ShareCollection />
+        </div>
       </div>
     </section>
   );
