@@ -10,6 +10,7 @@ import FavoriteButton from "@/components/FavoriteButton";
 import SimilarNfts from "@/components/SimilarNfts";
 import TrackView from "@/components/TrackView";
 import CopyAddressButton from "@/components/CopyAddressButton";
+import SwipeHint from "@/components/SwipeHint";
 import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import { getTraitIcon } from "@/lib/traitIcons";
@@ -120,6 +121,7 @@ export default async function DeclawPage({ params }: Props) {
       <Navbar />
       <TrackView nftId={nftId} />
       <KeyboardNav prevId={prevId} nextId={nextId} />
+      <SwipeHint prevId={prevId} nextId={nextId} />
       
       <div className="mx-auto max-w-4xl px-4 py-12">
         {/* Navigation */}
