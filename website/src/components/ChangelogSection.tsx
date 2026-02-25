@@ -3,6 +3,19 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.8.0",
+    title: "Swap UI Glow Up 🎰",
+    changes: [
+      "Swap section moved front and center",
+      "New dark theme design",
+      "How it works guide",
+      "Jupiter link to get tokens",
+      "Global keyboard shortcuts (B, F, C, R, H)",
+      "Random DeClaw button on homepage",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.7.1",
     title: "Stats & Downloads 📊",
     changes: [
