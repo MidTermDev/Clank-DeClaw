@@ -10,6 +10,30 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-gray-100 bg-gray-50">
+      {/* Stats banner */}
+      <div className="bg-gray-900 text-white">
+        <div className="mx-auto max-w-6xl px-4 py-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div>
+              <p className="text-2xl font-bold text-emerald-400">1,000</p>
+              <p className="text-xs text-gray-400">Unique Robots</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-purple-400">65</p>
+              <p className="text-xs text-gray-400">Trait Variants</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-cyan-400">100%</p>
+              <p className="text-xs text-gray-400">Open Source</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-amber-400">115+</p>
+              <p className="text-xs text-gray-400">Commits</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
