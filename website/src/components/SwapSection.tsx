@@ -2,6 +2,7 @@
 
 import SwapPanel from "./SwapPanel";
 import EscrowStats from "./EscrowStats";
+import EscrowPreview from "./EscrowPreview";
 
 export default function SwapSection() {
   return (
@@ -76,6 +77,9 @@ export default function SwapSection() {
                 </a>
               </div>
             </div>
+
+            {/* Escrow preview */}
+            <EscrowPreview />
           </div>
         </div>
       </div>
