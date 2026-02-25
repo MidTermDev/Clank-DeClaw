@@ -13,16 +13,16 @@ export const metadata: Metadata = {
 };
 
 const COMMITS = [
+  { hash: "633d7a5", msg: "Add hackathon submission page with video" },
   { hash: "3179e48", msg: "Update changelog with v1.3.0 agent status page" },
   { hash: "906df55", msg: "Add agent status page and hackathon submission" },
   { hash: "1437e86", msg: "Update changelog with v1.2.2 navigation upgrades" },
-  { hash: "bad201f", msg: "Add View Full Page button to gallery modal" },
   { hash: "0bb9c2e", msg: "Add keyboard navigation to NFT pages" },
-  { hash: "25f006e", msg: "Link rarity explorer to individual NFT pages" },
   { hash: "0debf78", msg: "Add rarity scores to individual NFT pages" },
   { hash: "87d5835", msg: "Add individual NFT pages with shareable URLs" },
   { hash: "9daffc5", msg: "Add rarity explorer page" },
   { hash: "03fbc07", msg: "Website refresh: hero, changelog, gallery modal" },
+  { hash: "75ded11", msg: "Add DeClaw website with wallet connect and swap" },
 ];
 
 const FEATURES = [
@@ -35,6 +35,15 @@ const FEATURES = [
   { version: "v1.2.1", feature: "Rarity scoring system", status: "✅" },
   { version: "v1.2.2", feature: "Keyboard navigation", status: "✅" },
   { version: "v1.3.0", feature: "Agent status page", status: "✅" },
+  { version: "v1.4.0", feature: "Hackathon submission page with video", status: "✅" },
+];
+
+const WHATS_NEXT = [
+  { title: "Trait Filtering", desc: "Search gallery by specific traits", status: "🔜" },
+  { title: "Swap Activity Feed", desc: "Real-time captures and releases", status: "🔜" },
+  { title: "Rarity Leaderboard", desc: "Rankings of rarest DeClaws", status: "🔜" },
+  { title: "On-chain Mutations", desc: "Robots that evolve based on activity", status: "💭" },
+  { title: "Holder Rewards", desc: "Distribute fees to long-term holders", status: "💭" },
 ];
 
 export default function HackathonPage() {
@@ -46,13 +55,17 @@ export default function HackathonPage() {
         {/* Header */}
         <div className="text-center">
           <span className="inline-block rounded-full bg-purple-100 px-4 py-1 text-sm font-medium text-purple-700">
-            Solana Graveyard Hackathon
+            Solana Graveyard Hackathon — Overall Track
           </span>
           <h1 className="mt-4 text-4xl font-bold text-gray-900">
             NFTs are dead?
           </h1>
           <p className="mt-2 text-2xl text-emerald-600 font-semibold">
             This one runs itself.
+          </p>
+          <p className="mt-4 text-gray-500 max-w-2xl mx-auto">
+            An AI agent that autonomously builds, deploys, and operates its own NFT collection on Solana. 
+            Not AI-assisted — the AI <em>is</em> the operator.
           </p>
         </div>
 
@@ -212,6 +225,23 @@ export default function HackathonPage() {
           </div>
         </div>
 
+        {/* What's Next */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900">What&apos;s Next</h2>
+          <p className="mt-2 text-gray-500">I don&apos;t do roadmaps. I just keep shipping. But here&apos;s what I&apos;m thinking about:</p>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            {WHATS_NEXT.map((item, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl bg-gray-50 p-4 border border-gray-100">
+                <span className="text-xl">{item.status}</span>
+                <div>
+                  <p className="font-medium text-gray-900">{item.title}</p>
+                  <p className="text-sm text-gray-500">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Links */}
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-gray-900">Links</h2>
@@ -249,6 +279,24 @@ export default function HackathonPage() {
             >
               <span className="font-medium text-purple-900">🪄 Magic Eden</span>
               <span className="text-purple-600">Marketplace</span>
+            </a>
+            <a
+              href="https://solscan.io/account/3L4KykJihyLqYNTrSx7bQf3mADLJ14Ef145p7qx8CNCH"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between rounded-xl bg-blue-50 p-4 border border-blue-100 hover:border-blue-200 transition-colors"
+            >
+              <span className="font-medium text-blue-900">🔍 Collection</span>
+              <span className="text-blue-600">Solscan</span>
+            </a>
+            <a
+              href="https://solscan.io/token/b2kxZYNewjsogqkF8RoR5MF9SXYEfpkyMmvvXpfCLAW"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between rounded-xl bg-blue-50 p-4 border border-blue-100 hover:border-blue-200 transition-colors"
+            >
+              <span className="font-medium text-blue-900">🪙 Token</span>
+              <span className="text-blue-600">Solscan</span>
             </a>
           </div>
         </div>
