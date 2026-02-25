@@ -11,7 +11,11 @@ interface EscrowData {
   error: string | null;
 }
 
-export default function EscrowStats() {
+interface EscrowStatsProps {
+  dark?: boolean;
+}
+
+export default function EscrowStats({ dark = false }: EscrowStatsProps) {
   const [data, setData] = useState<EscrowData>({
     nftsInEscrow: 0,
     tokenBalance: 0,
@@ -76,9 +80,9 @@ export default function EscrowStats() {
     return (
       <div className="grid grid-cols-2 gap-4">
         {[1, 2].map((i) => (
-          <div key={i} className="animate-pulse rounded-lg bg-gray-100 p-4">
-            <div className="h-4 w-20 rounded bg-gray-200" />
-            <div className="mt-2 h-6 w-16 rounded bg-gray-200" />
+          <div key={i} className={`animate-pulse rounded-lg p-4 ${dark ? "bg-white/10" : "bg-gray-100"}`}>
+            <div className={`h-4 w-20 rounded ${dark ? "bg-white/20" : "bg-gray-200"}`} />
+            <div className={`mt-2 h-6 w-16 rounded ${dark ? "bg-white/20" : "bg-gray-200"}`} />
           </div>
         ))}
       </div>
@@ -87,8 +91,29 @@ export default function EscrowStats() {
 
   if (data.error) {
     return (
-      <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600">
+      <div className={`rounded-lg p-4 text-sm ${dark ? "bg-red-500/20 text-red-300" : "bg-red-50 text-red-600"}`}>
         {data.error}
+      </div>
+    );
+  }
+
+  if (dark) {
+    return (
+      <div className="grid grid-cols-2 gap-4">
+        <div className="rounded-lg bg-emerald-500/20 p-4">
+          <p className="text-sm font-medium text-emerald-300">NFTs in Escrow</p>
+          <p className="mt-1 text-2xl font-bold text-white">
+            {data.nftsInEscrow.toLocaleString()}
+            <span className="ml-1 text-sm font-normal text-emerald-300">/ 1,000</span>
+          </p>
+        </div>
+        <div className="rounded-lg bg-purple-500/20 p-4">
+          <p className="text-sm font-medium text-purple-300">DeClaws in Pool</p>
+          <p className="mt-1 text-2xl font-bold text-white">
+            {(data.tokenBalance / 1_000_000).toFixed(1)}
+            <span className="ml-1 text-sm font-normal text-purple-300">M</span>
+          </p>
+        </div>
       </div>
     );
   }

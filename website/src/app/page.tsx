@@ -13,9 +13,9 @@ export default function Home() {
       <Navbar />
       <StatsBanner />
       <HeroSection />
+      <SwapSection />
       <AboutSection />
       <GallerySection />
-      <SwapSection />
       <ChangelogSection />
       <Footer />
     </main>

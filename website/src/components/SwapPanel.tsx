@@ -81,14 +81,16 @@ export default function SwapPanel() {
 
   if (!publicKey) {
     return (
-      <div className="rounded-lg border border-gray-100 bg-gray-50 p-8 text-center">
-        <p className="text-gray-500">Connect your wallet to swap</p>
+      <div className="p-8 text-center">
+        <div className="mb-4 text-4xl">🎰</div>
+        <p className="text-gray-600 font-medium">Connect your wallet to swap</p>
+        <p className="text-sm text-gray-400 mt-2">Use the wallet button in the navbar</p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg border border-gray-100 bg-gray-50">
+    <div>
       {/* Tabs */}
       <div className="flex border-b border-gray-100">
         <button
