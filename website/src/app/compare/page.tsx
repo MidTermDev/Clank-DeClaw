@@ -124,7 +124,12 @@ export default function ComparePage() {
 
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Compare DeClaws</h1>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-emerald-100 to-purple-100 mb-4">
+            <span className="text-3xl">⚖️</span>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-900">
+            Compare <span className="text-gradient">DeClaws</span>
+          </h1>
           <p className="mt-2 text-gray-500">
             Put two robots side by side to compare traits and rarity
           </p>
