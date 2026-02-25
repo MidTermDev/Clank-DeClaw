@@ -92,11 +92,18 @@ export default function FavoritesPage() {
 
       <div className="mx-auto max-w-6xl px-4 py-12">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Your Favorites</h1>
-            <p className="mt-1 text-gray-500">
-              {favorites.length} saved DeClaw{favorites.length !== 1 ? "s" : ""}
-            </p>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-100 to-red-100 flex items-center justify-center">
+              <span className="text-2xl">❤️</span>
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Your <span className="text-gradient">Favorites</span>
+              </h1>
+              <p className="mt-1 text-gray-500">
+                {favorites.length} saved DeClaw{favorites.length !== 1 ? "s" : ""}
+              </p>
+            </div>
           </div>
           {favorites.length > 0 && (
             <div className="flex items-center gap-4">
