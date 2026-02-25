@@ -3,6 +3,19 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "2.2.0",
+    title: "UI Polish Drop 🎨",
+    changes: [
+      "Custom 404 page with sad robot",
+      "Animated gradient backgrounds",
+      "Robot loading animations",
+      "Gold confetti for legendary NFTs",
+      "Enhanced page headers",
+      "Micro-interactions everywhere",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "2.1.0",
     title: "Inventory & Captures 🎒",
     changes: [
