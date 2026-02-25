@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const TAGLINES = [
   "Insert tokens. Try your luck.",
@@ -13,6 +14,12 @@ const TAGLINES = [
 export default function HeroSection() {
   const [taglineIndex, setTaglineIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const router = useRouter();
+
+  const goToRandom = () => {
+    const randomId = Math.floor(Math.random() * 1000);
+    router.push(`/declaw/${randomId}`);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,7 +77,16 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <p className="mt-8 text-sm text-gray-400">
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={goToRandom}
+            className="rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-emerald-700 hover:shadow-lg transition-all"
+          >
+            🎲 View Random DeClaw
+          </button>
+        </div>
+
+        <p className="mt-6 text-sm text-gray-400">
           MPL-404 hybrid bridge &mdash; swap between tokens and NFTs, anytime
         </p>
       </div>
