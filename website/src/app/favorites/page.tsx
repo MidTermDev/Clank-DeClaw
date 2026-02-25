@@ -14,10 +14,13 @@ interface FavoriteNft {
   rarityScore: number;
 }
 
+type SortOption = "added" | "id" | "rarity-high" | "rarity-low";
+
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<FavoriteNft[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [sort, setSort] = useState<SortOption>("added");
 
   useEffect(() => {
     setMounted(true);
@@ -58,6 +61,19 @@ export default function FavoritesPage() {
     setFavorites((prev) => prev.filter((f) => f.id !== id));
   };
 
+  const sortedFavorites = [...favorites].sort((a, b) => {
+    switch (sort) {
+      case "id":
+        return a.id - b.id;
+      case "rarity-high":
+        return b.rarityScore - a.rarityScore;
+      case "rarity-low":
+        return a.rarityScore - b.rarityScore;
+      default:
+        return 0; // Keep original order (order added)
+    }
+  });
+
   if (!mounted) {
     return (
       <main className="min-h-screen bg-white">
@@ -75,7 +91,7 @@ export default function FavoritesPage() {
       <Navbar />
 
       <div className="mx-auto max-w-6xl px-4 py-12">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Your Favorites</h1>
             <p className="mt-1 text-gray-500">
@@ -83,12 +99,24 @@ export default function FavoritesPage() {
             </p>
           </div>
           {favorites.length > 0 && (
-            <Link
-              href="/compare"
-              className="text-sm text-emerald-600 hover:text-emerald-700"
-            >
-              Compare favorites →
-            </Link>
+            <div className="flex items-center gap-4">
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value as SortOption)}
+                className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:border-emerald-500 focus:outline-none"
+              >
+                <option value="added">Order Added</option>
+                <option value="id">ID (Low → High)</option>
+                <option value="rarity-high">Rarest First</option>
+                <option value="rarity-low">Common First</option>
+              </select>
+              <Link
+                href="/compare"
+                className="text-sm text-emerald-600 hover:text-emerald-700"
+              >
+                Compare →
+              </Link>
+            </div>
           )}
         </div>
 
@@ -112,7 +140,7 @@ export default function FavoritesPage() {
           </div>
         ) : (
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {favorites.map((nft) => {
+            {sortedFavorites.map((nft) => {
               const tier = getRarityTier(nft.rarityScore);
               return (
                 <div
