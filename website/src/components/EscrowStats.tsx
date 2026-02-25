@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Connection, PublicKey } from "@solana/web3.js";
-import { RPC_URL, ESCROW_ADDRESS, CLAW_TOKEN_MINT, CLAW_DECIMALS } from "@/lib/constants";
+import { ESCROW_ADDRESS, CLAW_TOKEN_MINT } from "@/lib/constants";
+import { useUmiStore } from "@/hooks/useUmiStore";
 
 interface EscrowData {
   nftsInEscrow: number;
@@ -12,6 +12,7 @@ interface EscrowData {
 }
 
 export default function EscrowStats() {
+  const getUmi = useUmiStore((s) => s.getUmi);
   const [data, setData] = useState<EscrowData>({
     nftsInEscrow: 0,
     tokenBalance: 0,
@@ -22,20 +23,31 @@ export default function EscrowStats() {
   useEffect(() => {
     async function fetchEscrowData() {
       try {
-        const connection = new Connection(RPC_URL, "confirmed");
-        const escrowPubkey = new PublicKey(ESCROW_ADDRESS);
-        const tokenMint = new PublicKey(CLAW_TOKEN_MINT);
+        const endpoint = getUmi().rpc.getEndpoint();
 
-        // Fetch token accounts owned by escrow
-        const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
-          escrowPubkey,
-          { programId: new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA") }
-        );
+        // Direct JSON-RPC call to get parsed token accounts (no Connection / no WebSocket)
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            jsonrpc: "2.0",
+            id: 1,
+            method: "getTokenAccountsByOwner",
+            params: [
+              ESCROW_ADDRESS,
+              { programId: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA" },
+              { encoding: "jsonParsed" },
+            ],
+          }),
+        });
+
+        const json = await res.json();
+        const accounts = json.result?.value ?? [];
 
         let nftCount = 0;
         let tokenBalance = 0;
 
-        for (const { account } of tokenAccounts.value) {
+        for (const { account } of accounts) {
           const parsed = account.data.parsed?.info;
           if (!parsed) continue;
 
@@ -43,10 +55,8 @@ export default function EscrowStats() {
           const amount = parsed.tokenAmount;
 
           if (mint === CLAW_TOKEN_MINT) {
-            // This is the DeClaws token
             tokenBalance = amount.uiAmount || 0;
           } else if (amount.decimals === 0 && amount.uiAmount === 1) {
-            // This is an NFT (0 decimals, amount = 1)
             nftCount++;
           }
         }
@@ -68,11 +78,11 @@ export default function EscrowStats() {
     }
 
     fetchEscrowData();
-    
+
     // Refresh every 30 seconds
     const interval = setInterval(fetchEscrowData, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [getUmi]);
 
   if (data.loading) {
     return (
