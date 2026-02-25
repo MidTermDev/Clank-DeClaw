@@ -1,6 +1,7 @@
 "use client";
 
 import { SOCIAL_LINKS, COLLECTION_ADDRESS, CLAW_TOKEN_MINT } from "@/lib/constants";
+import RecentlyViewed from "./RecentlyViewed";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -138,6 +139,9 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        {/* Recently Viewed */}
+        <RecentlyViewed />
 
         <div className="mt-8 border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-gray-400">
