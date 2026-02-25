@@ -80,9 +80,11 @@ export default function HeroSection() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a
             href="#swap"
-            className="rounded-lg bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-gray-800 hover:shadow-lg transition-all"
+            className="relative rounded-lg bg-gray-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-gray-800 hover:shadow-lg transition-all group"
           >
-            🎰 Try the Claw Machine
+            <span className="absolute inset-0 rounded-lg bg-emerald-500 opacity-0 group-hover:opacity-20 transition-opacity" />
+            <span className="absolute -inset-1 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 opacity-30 blur group-hover:opacity-50 transition-opacity animate-pulse" />
+            <span className="relative">🎰 Try the Claw Machine</span>
           </a>
           <button
             onClick={goToRandom}
