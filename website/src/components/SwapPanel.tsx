@@ -167,9 +167,18 @@ export default function SwapPanel() {
             <button
               onClick={handleBuy}
               disabled={!canBuy || loading || escrowNfts.length === 0}
-              className="w-full rounded-lg bg-gray-900 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-300"
+              className={`relative w-full rounded-lg px-4 py-3 text-sm font-medium text-white transition-all ${
+                canBuy && !loading && escrowNfts.length > 0
+                  ? "bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-500/25"
+                  : "bg-gray-300 cursor-not-allowed"
+              }`}
             >
-              {loading ? "Processing..." : "Capture NFT"}
+              {canBuy && !loading && escrowNfts.length > 0 && (
+                <span className="absolute inset-0 rounded-lg animate-pulse bg-emerald-400 opacity-25" />
+              )}
+              <span className="relative">
+                {loading ? "Processing..." : "🎰 Capture NFT"}
+              </span>
             </button>
             {!canBuy && publicKey && (
               <p className="text-xs text-gray-400">
