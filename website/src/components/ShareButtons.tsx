@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
+import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+
 interface ShareButtonsProps {
   nftId: number;
 }
 
 export default function ShareButtons({ nftId }: ShareButtonsProps) {
+  const [downloading, setDownloading] = useState(false);
   const url = `https://declaws.com/declaw/${nftId}`;
 
   const copyLink = async () => {
@@ -12,7 +16,6 @@ export default function ShareButtons({ nftId }: ShareButtonsProps) {
       await navigator.clipboard.writeText(url);
       alert("Link copied!");
     } catch {
-      // Fallback for older browsers
       const input = document.createElement("input");
       input.value = url;
       document.body.appendChild(input);
@@ -23,21 +26,48 @@ export default function ShareButtons({ nftId }: ShareButtonsProps) {
     }
   };
 
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      const imageUrl = `${IPFS_GATEWAY}/${IMAGES_CID}/${nftId}.png`;
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = `DeClaw-${nftId}.png`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(blobUrl);
+      document.body.removeChild(a);
+    } catch (err) {
+      console.error("Download failed:", err);
+    }
+    setDownloading(false);
+  };
+
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-wrap gap-2">
       <a
         href={`https://twitter.com/intent/tweet?text=Check out DeClaw %23${nftId} 🤖&url=${encodeURIComponent(url)}&via=ClankDeClaw`}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex-1 rounded-xl bg-black p-3 text-center text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+        className="flex-1 min-w-[100px] rounded-xl bg-black p-3 text-center text-sm font-medium text-white hover:bg-gray-800 transition-colors"
       >
         Share on X
       </a>
       <button
         onClick={copyLink}
-        className="flex-1 rounded-xl bg-gray-100 p-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+        className="flex-1 min-w-[100px] rounded-xl bg-gray-100 p-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
       >
         Copy Link
+      </button>
+      <button
+        onClick={handleDownload}
+        disabled={downloading}
+        className="flex-1 min-w-[100px] rounded-xl bg-emerald-100 p-3 text-center text-sm font-medium text-emerald-700 hover:bg-emerald-200 transition-colors disabled:opacity-50"
+      >
+        {downloading ? "..." : "⬇ Download"}
       </button>
     </div>
   );

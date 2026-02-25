@@ -233,9 +233,9 @@ export default async function DeclawPage({ params }: Props) {
               </a>
             </div>
 
-            {/* Share */}
+            {/* Share & Download */}
             <div className="mt-8">
-              <h2 className="text-sm font-medium text-gray-700 mb-3">Share</h2>
+              <h2 className="text-sm font-medium text-gray-700 mb-3">Share & Download</h2>
               <ShareButtons nftId={nftId} />
             </div>
           </div>
