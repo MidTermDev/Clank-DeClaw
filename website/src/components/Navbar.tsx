@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
@@ -39,9 +40,16 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <span className="text-xl font-bold tracking-tight text-gray-900">
-          De<span className="text-emerald-600">Claw</span>
-        </span>
+        <div className="flex items-center gap-6">
+          <Link href="/" className="text-xl font-bold tracking-tight text-gray-900">
+            De<span className="text-emerald-600">Claw</span>
+          </Link>
+          <div className="hidden items-center gap-4 sm:flex">
+            <Link href="/rarity" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+              Rarity
+            </Link>
+          </div>
+        </div>
         <div className="flex items-center gap-4">
           <a
             href="https://magiceden.io/marketplace/declaw"
