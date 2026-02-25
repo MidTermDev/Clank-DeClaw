@@ -309,3 +309,31 @@ select:focus-visible {
 .shine-effect:hover::after {
   transform: rotate(30deg) translateX(100%);
 }
+
+/* Robot wave animation */
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+.animate-wave {
+  animation: wave 1s ease-in-out infinite;
+}
+
+/* Shimmer animation */
+@keyframes shimmer-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer-slide 2s linear infinite;
+}
