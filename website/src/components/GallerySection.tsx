@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GALLERY_IDS, imageUrl, metadataUrl } from "@/lib/constants";
+import { calculateRarityScore, getRarityTier } from "@/lib/rarity";
 import QuickJump from "./QuickJump";
 
 interface NftMeta {
@@ -11,6 +12,7 @@ interface NftMeta {
   name: string;
   image: string;
   attributes: Array<{ trait_type: string; value: string }>;
+  rarityScore: number;
 }
 
 export default function GallerySection() {
@@ -24,11 +26,17 @@ export default function GallerySection() {
           try {
             const res = await fetch(metadataUrl(id));
             const json = await res.json();
+            const attrs = json.attributes || [];
+            const traits: Record<string, string> = {};
+            for (const attr of attrs) {
+              traits[attr.trait_type] = attr.value;
+            }
             return {
               id,
               name: json.name,
               image: imageUrl(id),
-              attributes: json.attributes || [],
+              attributes: attrs,
+              rarityScore: calculateRarityScore(traits),
             } as NftMeta;
           } catch {
             return {
@@ -36,6 +44,7 @@ export default function GallerySection() {
               name: `DeClaw #${id}`,
               image: imageUrl(id),
               attributes: [],
+              rarityScore: 0,
             } as NftMeta;
           }
         })
@@ -61,7 +70,9 @@ export default function GallerySection() {
       </div>
       
       <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {nfts.map((nft) => (
+        {nfts.map((nft) => {
+          const tier = getRarityTier(nft.rarityScore);
+          return (
           <button
             key={nft.id}
             onClick={() => setSelectedNft(nft)}
@@ -75,6 +86,10 @@ export default function GallerySection() {
                 className="object-cover"
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
               />
+              {/* Rarity badge */}
+              <div className={`absolute top-2 right-2 rounded-full px-2 py-0.5 text-xs font-semibold bg-white/90 backdrop-blur-sm ${tier.color}`}>
+                {tier.label}
+              </div>
             </div>
             <div className="p-3">
               <p className="text-sm font-medium text-gray-900">{nft.name}</p>
@@ -95,7 +110,7 @@ export default function GallerySection() {
               </div>
             </div>
           </button>
-        ))}
+        );})}
       </div>
 
       {/* Modal */}
