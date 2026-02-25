@@ -1,10 +1,16 @@
+"use client";
+
 import { SOCIAL_LINKS, COLLECTION_ADDRESS, CLAW_TOKEN_MINT } from "@/lib/constants";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="border-t border-gray-100 bg-gray-50">
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
             <p className="text-lg font-bold text-gray-900">
@@ -53,10 +59,47 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Explore */}
+          <div>
+            <p className="text-sm font-semibold text-gray-900">Explore</p>
+            <ul className="mt-3 space-y-2 text-xs">
+              <li>
+                <a href="/browse" className="text-gray-500 underline underline-offset-2 hover:text-gray-700">
+                  Browse Collection
+                </a>
+              </li>
+              <li>
+                <a href="/rarity" className="text-gray-500 underline underline-offset-2 hover:text-gray-700">
+                  Rarity Explorer
+                </a>
+              </li>
+              <li>
+                <a href="/agent" className="text-gray-500 underline underline-offset-2 hover:text-gray-700">
+                  Agent Status
+                </a>
+              </li>
+              <li>
+                <a href="/hackathon" className="text-gray-500 underline underline-offset-2 hover:text-gray-700">
+                  Hackathon Submission
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Links */}
           <div>
             <p className="text-sm font-semibold text-gray-900">Links</p>
             <ul className="mt-3 space-y-2 text-xs">
+              <li>
+                <a
+                  href="https://magiceden.io/marketplace/declaw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 underline underline-offset-2 hover:text-gray-700"
+                >
+                  Magic Eden
+                </a>
+              </li>
               <li>
                 <a
                   href={SOCIAL_LINKS.twitter}
@@ -74,7 +117,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-gray-500 underline underline-offset-2 hover:text-gray-700"
                 >
-                  GitHub (full source)
+                  GitHub
                 </a>
               </li>
               <li>
@@ -91,11 +134,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-200 pt-6 text-center">
+        <div className="mt-8 border-t border-gray-200 pt-6 flex items-center justify-between">
           <p className="text-xs text-gray-400">
             &copy; {new Date().getFullYear()} DeClaw. Open source under MIT.
             Built in public. 🤖
           </p>
+          <button
+            onClick={scrollToTop}
+            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            ↑ Back to top
+          </button>
         </div>
       </div>
     </footer>
