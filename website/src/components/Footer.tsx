@@ -139,17 +139,22 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-200 pt-6 flex items-center justify-between">
+        <div className="mt-8 border-t border-gray-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-gray-400">
             &copy; {new Date().getFullYear()} DeClaw. Open source under MIT.
             Built in public. 🤖
           </p>
-          <button
-            onClick={scrollToTop}
-            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            ↑ Back to top
-          </button>
+          <div className="flex items-center gap-4">
+            <p className="text-xs text-gray-300" title="B=Browse, F=Favorites, C=Compare, R=Rarity, H=Home">
+              ⌨️ Press B, F, C, R, H to navigate
+            </p>
+            <button
+              onClick={scrollToTop}
+              className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              ↑ Back to top
+            </button>
+          </div>
         </div>
       </div>
     </footer>
