@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, TRAIT_WEIGHTS } from "@/lib/rarity";
+import SearchBar from "@/components/SearchBar";
 
 interface NftData {
   id: number;
@@ -115,18 +116,11 @@ export default function BrowsePage() {
             </p>
           </div>
 
-          {/* Search by ID */}
+          {/* Search */}
           <div className="flex items-center gap-3">
-            <input
-              type="text"
-              placeholder="Search by ID..."
-              value={searchId}
-              onChange={(e) => {
-                setSearchId(e.target.value);
-                setPage(1);
-              }}
-              className="w-32 rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none"
-            />
+            <div className="w-64">
+              <SearchBar />
+            </div>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as "id" | "rarity")}
