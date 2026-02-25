@@ -3,6 +3,18 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "2.1.0",
+    title: "Inventory & Captures 🎒",
+    changes: [
+      "Capture popup shows your new NFT",
+      "Inventory backpack (floating button)",
+      "Auto-load available escrow NFTs",
+      "Slide-out panel with owned NFTs",
+      "DeClaws balance display",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "2.0.0",
     title: "100 Commits! 🎉",
     changes: [
