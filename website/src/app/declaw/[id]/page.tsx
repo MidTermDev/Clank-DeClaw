@@ -9,6 +9,7 @@ import KeyboardNav from "@/components/KeyboardNav";
 import FavoriteButton from "@/components/FavoriteButton";
 import SimilarNfts from "@/components/SimilarNfts";
 import TrackView from "@/components/TrackView";
+import CopyAddressButton from "@/components/CopyAddressButton";
 import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import mintedAssets from "@/lib/minted-assets.json";
@@ -214,15 +215,18 @@ export default async function DeclawPage({ params }: Props) {
             {/* Links */}
             <div className="mt-8 space-y-3">
               {assetAddress && (
-                <a
-                  href={`https://solscan.io/token/${assetAddress}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between rounded-xl bg-gray-50 p-4 border border-gray-100 hover:border-gray-200 transition-colors"
-                >
-                  <span className="text-sm font-medium text-gray-900">View on Solscan</span>
-                  <span className="text-gray-400">↗</span>
-                </a>
+                <>
+                  <CopyAddressButton address={assetAddress} label="NFT Address" />
+                  <a
+                    href={`https://solscan.io/token/${assetAddress}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-xl bg-gray-50 p-4 border border-gray-100 hover:border-gray-200 transition-colors"
+                  >
+                    <span className="text-sm font-medium text-gray-900">View on Solscan</span>
+                    <span className="text-gray-400">↗</span>
+                  </a>
+                </>
               )}
               <a
                 href={`https://magiceden.io/item-details/solana/${assetAddress}`}
