@@ -13,30 +13,29 @@ export const metadata: Metadata = {
 };
 
 const COMMITS = [
-  { hash: "8dd594a", msg: "Improve UX: inline copy feedback" },
-  { hash: "1ca80e1", msg: "Add download image button to NFT pages" },
-  { hash: "ac38505", msg: "Add live stats banner to homepage" },
-  { hash: "fb8e7aa", msg: "Add Similar NFTs section to individual pages" },
-  { hash: "0985ec3", msg: "Add favorites feature with localStorage" },
-  { hash: "a7b6191", msg: "Add Compare page for side-by-side comparison" },
-  { hash: "4e970f7", msg: "Add mobile navigation menu and quick jump" },
-  { hash: "d04dafd", msg: "Add Browse page with trait filtering" },
-  { hash: "633d7a5", msg: "Add hackathon submission page with video" },
-  { hash: "906df55", msg: "Add agent status page" },
+  { hash: "f2d0ef2", msg: "Add NFT of the Day feature" },
+  { hash: "95595cc", msg: "Add mobile swipe hints" },
+  { hash: "d9d408f", msg: "Add rarity breakdown to swap section" },
+  { hash: "d420a1e", msg: "Add escrow preview to swap section" },
+  { hash: "619c6e9", msg: "Add Konami code Easter egg 🎮" },
+  { hash: "a9b810c", msg: "Add confetti on capture 🎉" },
+  { hash: "90301d8", msg: "Redesign swap UI front and center" },
+  { hash: "0985ec3", msg: "Add favorites with localStorage" },
+  { hash: "a7b6191", msg: "Add Compare page" },
+  { hash: "d04dafd", msg: "Add Browse with trait filtering" },
 ];
 
 const FEATURES = [
   { version: "v1.0.0", feature: "1,000 unique robot NFTs minted", status: "✅" },
   { version: "v1.0.0", feature: "MPL-404 hybrid bridge", status: "✅" },
   { version: "v1.0.0", feature: "Swap UI with wallet connect", status: "✅" },
-  { version: "v1.1.0", feature: "Rarity explorer", status: "✅" },
-  { version: "v1.2.0", feature: "Individual NFT pages (1,000 routes)", status: "✅" },
-  { version: "v1.3.0", feature: "Agent status page", status: "✅" },
-  { version: "v1.4.0", feature: "Hackathon submission page", status: "✅" },
   { version: "v1.5.0", feature: "Browse with trait filtering", status: "✅" },
   { version: "v1.6.0", feature: "Compare NFTs side-by-side", status: "✅" },
   { version: "v1.7.0", feature: "Favorites + Similar NFTs", status: "✅" },
-  { version: "v1.7.1", feature: "Stats banner + image download", status: "✅" },
+  { version: "v1.8.0", feature: "Swap UI redesign + keyboard shortcuts", status: "✅" },
+  { version: "v1.9.0", feature: "Confetti, rarity badges, Easter eggs", status: "✅" },
+  { version: "v1.9.1", feature: "Trait icons, tooltips, animations", status: "✅" },
+  { version: "v1.9.2", feature: "Escrow preview, NFT of the Day", status: "✅" },
 ];
 
 const WHATS_NEXT = [
