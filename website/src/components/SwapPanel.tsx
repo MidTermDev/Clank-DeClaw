@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useWallet } from "@solana/wallet-adapter-react";
 import confetti from "canvas-confetti";
 import { useUmiStore } from "@/hooks/useUmiStore";
@@ -25,9 +26,23 @@ export default function SwapPanel() {
   const [status, setStatus] = useState<string | null>(null);
   const [selectedNft, setSelectedNft] = useState<DasAsset | null>(null);
   const [escrowNfts, setEscrowNfts] = useState<DasAsset[]>([]);
-  const [escrowLoading, setEscrowLoading] = useState(false);
+  const [escrowLoading, setEscrowLoading] = useState(true);
+  const [capturedNft, setCapturedNft] = useState<{ id: number; sig: string } | null>(null);
 
   const canBuy = publicKey && balance >= SWAP_AMOUNT;
+
+  // Extract NFT ID from name like "DeClaw #42"
+  const getNftId = (nft: DasAsset): number => {
+    const match = nft.content.metadata.name.match(/#(\d+)/);
+    return match ? parseInt(match[1]) : 0;
+  };
+
+  // Auto-load escrow NFTs when wallet connects
+  useEffect(() => {
+    if (publicKey) {
+      loadEscrowNfts();
+    }
+  }, [publicKey]);
 
   async function loadEscrowNfts() {
     setEscrowLoading(true);
@@ -45,11 +60,14 @@ export default function SwapPanel() {
     if (!publicKey || escrowNfts.length === 0) return;
     // Pick a random NFT from the escrow
     const randomNft = escrowNfts[Math.floor(Math.random() * escrowNfts.length)];
+    const nftId = getNftId(randomNft);
     setLoading(true);
     setStatus("Capturing NFT...");
     try {
       const sig = await executeCaptureV1(getUmi(), randomNft.id);
-      setStatus(`Capture sent! View on Solscan: https://solscan.io/tx/${sig}`);
+      // Show the captured NFT!
+      setCapturedNft({ id: nftId, sig });
+      setStatus(null);
       // Celebrate! 🎉
       confetti({
         particleCount: 100,
@@ -57,7 +75,11 @@ export default function SwapPanel() {
         origin: { y: 0.6 },
         colors: ['#10b981', '#059669', '#34d399', '#6ee7b7'],
       });
-      setTimeout(() => { refreshBalance(); refreshUserNfts(); }, 5000);
+      setTimeout(() => { 
+        refreshBalance(); 
+        refreshUserNfts();
+        loadEscrowNfts(); // Refresh escrow list
+      }, 5000);
     } catch (err) {
       setStatus(`Capture failed: ${err instanceof Error ? err.message : "Unknown error"}`);
     } finally {
@@ -79,12 +101,6 @@ export default function SwapPanel() {
     } finally {
       setLoading(false);
     }
-  }
-
-  // Extract NFT ID from name like "DeClaw #42"
-  function getNftId(nft: DasAsset): number {
-    const match = nft.content.metadata.name.match(/#(\d+)/);
-    return match ? parseInt(match[1]) : 0;
   }
 
   if (!publicKey) {
@@ -148,21 +164,17 @@ export default function SwapPanel() {
               Pay {SWAP_AMOUNT.toLocaleString()} DeClaws to capture a random DeClaw
               NFT from the escrow.
             </p>
-            {escrowNfts.length === 0 && !escrowLoading && (
-              <button
-                onClick={loadEscrowNfts}
-                className="w-full rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50"
-              >
-                Load available NFTs
-              </button>
-            )}
-            {escrowLoading && (
-              <p className="text-sm text-gray-400">Loading escrow NFTs...</p>
-            )}
-            {escrowNfts.length > 0 && (
-              <p className="text-sm text-gray-400">
-                {escrowNfts.length} NFTs available in escrow
+            {escrowLoading ? (
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <div className="animate-spin h-4 w-4 border-2 border-emerald-500 border-t-transparent rounded-full" />
+                Loading available NFTs...
+              </div>
+            ) : escrowNfts.length > 0 ? (
+              <p className="text-sm text-emerald-600 font-medium">
+                ✓ {escrowNfts.length} NFTs ready to capture
               </p>
+            ) : (
+              <p className="text-sm text-gray-400">No NFTs available in escrow</p>
             )}
             <button
               onClick={handleBuy}
@@ -257,6 +269,61 @@ export default function SwapPanel() {
           </div>
         )}
       </div>
+
+      {/* Captured NFT Popup */}
+      {capturedNft && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+          onClick={() => setCapturedNft(null)}
+        >
+          <div 
+            className="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden animate-bounce-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-gradient-to-br from-emerald-500 to-cyan-500 p-4 text-center">
+              <p className="text-white text-lg font-bold">🎉 You captured it!</p>
+            </div>
+            <div className="p-6">
+              <div className="relative aspect-square rounded-xl overflow-hidden border-4 border-emerald-200 shadow-lg">
+                <img
+                  src={imageUrl(capturedNft.id)}
+                  alt={`DeClaw #${capturedNft.id}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="mt-4 text-2xl font-bold text-gray-900 text-center">
+                DeClaw #{capturedNft.id}
+              </h3>
+              <p className="mt-2 text-sm text-gray-500 text-center">
+                This robot is now yours!
+              </p>
+              <div className="mt-6 space-y-2">
+                <Link
+                  href={`/declaw/${capturedNft.id}`}
+                  className="block w-full rounded-lg bg-emerald-600 py-3 text-center text-sm font-medium text-white hover:bg-emerald-700"
+                  onClick={() => setCapturedNft(null)}
+                >
+                  View Your DeClaw
+                </Link>
+                <a
+                  href={`https://solscan.io/tx/${capturedNft.sig}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full rounded-lg bg-gray-100 py-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-200"
+                >
+                  View Transaction ↗
+                </a>
+                <button
+                  onClick={() => setCapturedNft(null)}
+                  className="block w-full py-2 text-center text-sm text-gray-500 hover:text-gray-700"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
