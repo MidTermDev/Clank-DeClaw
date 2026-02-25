@@ -93,7 +93,10 @@ export default function GallerySection() {
                 sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
               />
               {/* Rarity badge */}
-              <div className={`absolute top-2 right-2 rounded-full px-2 py-0.5 text-xs font-semibold bg-white/90 backdrop-blur-sm ${tier.color}`}>
+              <div 
+                className={`absolute top-2 right-2 rounded-full px-2 py-0.5 text-xs font-semibold bg-white/90 backdrop-blur-sm ${tier.color} cursor-help`}
+                title={`Rarity Score: ${nft.rarityScore}`}
+              >
                 {tier.label}
               </div>
             </div>
