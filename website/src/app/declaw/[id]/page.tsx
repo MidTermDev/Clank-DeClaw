@@ -243,6 +243,15 @@ export default async function DeclawPage({ params }: Props) {
                 <span className="text-sm font-medium text-purple-900">View on Magic Eden</span>
                 <span className="text-purple-400">↗</span>
               </a>
+              <a
+                href={`https://solscan.io/account/${assetAddress}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between rounded-xl bg-emerald-50 p-4 border border-emerald-100 hover:border-emerald-200 transition-colors"
+              >
+                <span className="text-sm font-medium text-emerald-900">View on Solscan</span>
+                <span className="text-emerald-400">↗</span>
+              </a>
             </div>
 
             {/* Share & Download */}
