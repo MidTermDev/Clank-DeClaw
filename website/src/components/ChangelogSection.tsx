@@ -3,6 +3,17 @@
 const CHANGELOG = [
   {
     date: "2026-02-25",
+    version: "1.7.0",
+    title: "Favorites & Discovery ♥",
+    changes: [
+      "Save favorite DeClaws with heart button",
+      "/favorites page to view saved robots",
+      "Similar NFTs section on every page",
+      "Discover robots with matching rare traits",
+    ],
+  },
+  {
+    date: "2026-02-25",
     version: "1.6.0",
     title: "Compare & QoL 🔄",
     changes: [
