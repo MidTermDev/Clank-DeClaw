@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CountdownTimer from "@/components/CountdownTimer";
 
 export const metadata: Metadata = {
   title: "Graveyard Hackathon Submission | DeClaw",
@@ -69,6 +70,13 @@ export default function HackathonPage() {
             An AI agent that autonomously builds, deploys, and operates its own NFT collection on Solana. 
             Not AI-assisted — the AI <em>is</em> the operator.
           </p>
+          
+          <div className="mt-8 flex justify-center">
+            <CountdownTimer 
+              targetDate={new Date("2026-02-27T23:59:59Z")} 
+              label="Hackathon deadline"
+            />
+          </div>
         </div>
 
         {/* Video */}
