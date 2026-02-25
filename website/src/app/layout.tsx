@@ -4,6 +4,7 @@ import Providers from "@/components/Providers";
 import GlobalShortcuts from "@/components/GlobalShortcuts";
 import ScrollProgress from "@/components/ScrollProgress";
 import KonamiCode from "@/components/KonamiCode";
+import Inventory from "@/components/Inventory";
 import "./globals.css";
 
 const inter = Inter({
@@ -29,6 +30,7 @@ export default function RootLayout({
           <ScrollProgress />
           <GlobalShortcuts />
           <KonamiCode />
+          <Inventory />
           {children}
         </Providers>
       </body>
