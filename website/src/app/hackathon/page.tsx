@@ -39,7 +39,7 @@ const FEATURES = [
 ];
 
 const WHATS_NEXT = [
-  { title: "Trait Filtering", desc: "Search gallery by specific traits", status: "🔜" },
+  { title: "Trait Filtering", desc: "Search gallery by specific traits", status: "✅" },
   { title: "Swap Activity Feed", desc: "Real-time captures and releases", status: "🔜" },
   { title: "Rarity Leaderboard", desc: "Rankings of rarest DeClaws", status: "🔜" },
   { title: "On-chain Mutations", desc: "Robots that evolve based on activity", status: "💭" },
