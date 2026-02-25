@@ -13,16 +13,16 @@ export const metadata: Metadata = {
 };
 
 const COMMITS = [
+  { hash: "8dd594a", msg: "Improve UX: inline copy feedback" },
+  { hash: "1ca80e1", msg: "Add download image button to NFT pages" },
+  { hash: "ac38505", msg: "Add live stats banner to homepage" },
+  { hash: "fb8e7aa", msg: "Add Similar NFTs section to individual pages" },
+  { hash: "0985ec3", msg: "Add favorites feature with localStorage" },
+  { hash: "a7b6191", msg: "Add Compare page for side-by-side comparison" },
+  { hash: "4e970f7", msg: "Add mobile navigation menu and quick jump" },
+  { hash: "d04dafd", msg: "Add Browse page with trait filtering" },
   { hash: "633d7a5", msg: "Add hackathon submission page with video" },
-  { hash: "3179e48", msg: "Update changelog with v1.3.0 agent status page" },
-  { hash: "906df55", msg: "Add agent status page and hackathon submission" },
-  { hash: "1437e86", msg: "Update changelog with v1.2.2 navigation upgrades" },
-  { hash: "0bb9c2e", msg: "Add keyboard navigation to NFT pages" },
-  { hash: "0debf78", msg: "Add rarity scores to individual NFT pages" },
-  { hash: "87d5835", msg: "Add individual NFT pages with shareable URLs" },
-  { hash: "9daffc5", msg: "Add rarity explorer page" },
-  { hash: "03fbc07", msg: "Website refresh: hero, changelog, gallery modal" },
-  { hash: "75ded11", msg: "Add DeClaw website with wallet connect and swap" },
+  { hash: "906df55", msg: "Add agent status page" },
 ];
 
 const FEATURES = [
@@ -30,20 +30,23 @@ const FEATURES = [
   { version: "v1.0.0", feature: "MPL-404 hybrid bridge", status: "✅" },
   { version: "v1.0.0", feature: "Swap UI with wallet connect", status: "✅" },
   { version: "v1.1.0", feature: "Rarity explorer", status: "✅" },
-  { version: "v1.1.0", feature: "Live escrow stats", status: "✅" },
   { version: "v1.2.0", feature: "Individual NFT pages (1,000 routes)", status: "✅" },
-  { version: "v1.2.1", feature: "Rarity scoring system", status: "✅" },
-  { version: "v1.2.2", feature: "Keyboard navigation", status: "✅" },
   { version: "v1.3.0", feature: "Agent status page", status: "✅" },
-  { version: "v1.4.0", feature: "Hackathon submission page with video", status: "✅" },
+  { version: "v1.4.0", feature: "Hackathon submission page", status: "✅" },
+  { version: "v1.5.0", feature: "Browse with trait filtering", status: "✅" },
+  { version: "v1.6.0", feature: "Compare NFTs side-by-side", status: "✅" },
+  { version: "v1.7.0", feature: "Favorites + Similar NFTs", status: "✅" },
+  { version: "v1.7.1", feature: "Stats banner + image download", status: "✅" },
 ];
 
 const WHATS_NEXT = [
   { title: "Trait Filtering", desc: "Search gallery by specific traits", status: "✅" },
+  { title: "NFT Comparison", desc: "Side-by-side robot comparison", status: "✅" },
+  { title: "Favorites System", desc: "Save and manage favorite DeClaws", status: "✅" },
+  { title: "Similar NFTs", desc: "Discover robots with matching traits", status: "✅" },
+  { title: "Live Stats", desc: "Real-time escrow and collection data", status: "✅" },
   { title: "Swap Activity Feed", desc: "Real-time captures and releases", status: "🔜" },
-  { title: "Rarity Leaderboard", desc: "Rankings of rarest DeClaws", status: "🔜" },
   { title: "On-chain Mutations", desc: "Robots that evolve based on activity", status: "💭" },
-  { title: "Holder Rewards", desc: "Distribute fees to long-term holders", status: "💭" },
 ];
 
 export default function HackathonPage() {
