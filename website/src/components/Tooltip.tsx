@@ -3,13 +3,19 @@
 import { useState, ReactNode } from "react";
 
 interface TooltipProps {
-  children: ReactNode;
   content: string;
+  children: ReactNode;
   position?: "top" | "bottom" | "left" | "right";
+  className?: string;
 }
 
-export default function Tooltip({ children, content, position = "top" }: TooltipProps) {
-  const [show, setShow] = useState(false);
+export default function Tooltip({
+  content,
+  children,
+  position = "top",
+  className = "",
+}: TooltipProps) {
+  const [isVisible, setIsVisible] = useState(false);
 
   const positionClasses = {
     top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
@@ -18,25 +24,30 @@ export default function Tooltip({ children, content, position = "top" }: Tooltip
     right: "left-full top-1/2 -translate-y-1/2 ml-2",
   };
 
+  const arrowClasses = {
+    top: "top-full left-1/2 -translate-x-1/2 border-t-gray-900 border-x-transparent border-b-transparent",
+    bottom: "bottom-full left-1/2 -translate-x-1/2 border-b-gray-900 border-x-transparent border-t-transparent",
+    left: "left-full top-1/2 -translate-y-1/2 border-l-gray-900 border-y-transparent border-r-transparent",
+    right: "right-full top-1/2 -translate-y-1/2 border-r-gray-900 border-y-transparent border-l-transparent",
+  };
+
   return (
     <div
-      className="relative inline-flex"
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
+      className={`relative inline-flex ${className}`}
+      onMouseEnter={() => setIsVisible(true)}
+      onMouseLeave={() => setIsVisible(false)}
     >
       {children}
-      {show && (
+      {isVisible && (
         <div
-          className={`absolute z-50 whitespace-nowrap rounded-lg bg-gray-900 px-3 py-1.5 text-xs text-white shadow-lg ${positionClasses[position]}`}
+          className={`absolute z-50 ${positionClasses[position]} pointer-events-none`}
+          role="tooltip"
         >
-          {content}
+          <div className="bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+            {content}
+          </div>
           <div
-            className={`absolute h-2 w-2 rotate-45 bg-gray-900 ${
-              position === "top" ? "bottom-[-4px] left-1/2 -translate-x-1/2" :
-              position === "bottom" ? "top-[-4px] left-1/2 -translate-x-1/2" :
-              position === "left" ? "right-[-4px] top-1/2 -translate-y-1/2" :
-              "left-[-4px] top-1/2 -translate-y-1/2"
-            }`}
+            className={`absolute w-0 h-0 border-4 ${arrowClasses[position]}`}
           />
         </div>
       )}
