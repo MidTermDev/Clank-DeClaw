@@ -3,8 +3,9 @@ export const COLLECTION_ADDRESS = process.env.NEXT_PUBLIC_COLLECTION_ADDRESS!;
 export const ESCROW_ADDRESS = process.env.NEXT_PUBLIC_ESCROW_ADDRESS!;
 export const CLAW_TOKEN_MINT = process.env.NEXT_PUBLIC_CLAW_TOKEN_MINT!;
 export const FEE_LOCATION = process.env.NEXT_PUBLIC_FEE_LOCATION!;
-export const IMAGES_CID = process.env.NEXT_PUBLIC_IMAGES_CID!;
-export const METADATA_CID = process.env.NEXT_PUBLIC_METADATA_CID!;
+// Hardcoded for reliability - env vars can be flaky in builds
+export const IMAGES_CID = "bafybeidgrbt7retu2vj4lq7e32u5cqrlbtcfugmkkszgt7x42zgkdchux4";
+export const METADATA_CID = "bafybeian5z6oxfrz2iv52j2f7fnaiotpi4aocnn3d5uxop7a36y5akj47i";
 
 export const MPL_HYBRID_PROGRAM_ID = "MPL4o4wMzndgh8T1NVDxELQCj5UQfYTYEkabX3wNKtb";
 
