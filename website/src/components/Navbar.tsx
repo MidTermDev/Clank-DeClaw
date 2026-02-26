@@ -62,6 +62,7 @@ const NAV_LINKS = [
 const MORE_LINKS = [
   { href: "/docs", label: "Docs" },
   { href: "/stats", label: "Stats" },
+  { href: "/traits", label: "Traits" },
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/roadmap", label: "Roadmap" },
   { href: "/favorites", label: "Favorites" },
