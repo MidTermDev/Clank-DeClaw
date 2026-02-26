@@ -25,6 +25,13 @@ export default function BrowsePage() {
   const [sortBy, setSortBy] = useState<"id" | "rarity">("id");
   const [page, setPage] = useState(1);
   const [searchId, setSearchId] = useState("");
+  const [gridSize, setGridSize] = useState<"small" | "medium" | "large">("medium");
+
+  const gridClasses = {
+    small: "grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10",
+    medium: "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5",
+    large: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
+  };
 
   useEffect(() => {
     async function loadManifest() {
@@ -128,6 +135,48 @@ export default function BrowsePage() {
               <option value="id">Sort by ID</option>
               <option value="rarity">Sort by Rarity</option>
             </select>
+            {/* Grid size toggle */}
+            <div className="hidden sm:flex items-center border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                onClick={() => setGridSize("small")}
+                className={`p-2 ${gridSize === "small" ? "bg-emerald-100 text-emerald-700" : "text-gray-400 hover:text-gray-600"}`}
+                title="Small grid"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+                  <rect x="1" y="1" width="3" height="3" rx="0.5" />
+                  <rect x="6" y="1" width="3" height="3" rx="0.5" />
+                  <rect x="11" y="1" width="3" height="3" rx="0.5" />
+                  <rect x="1" y="6" width="3" height="3" rx="0.5" />
+                  <rect x="6" y="6" width="3" height="3" rx="0.5" />
+                  <rect x="11" y="6" width="3" height="3" rx="0.5" />
+                  <rect x="1" y="11" width="3" height="3" rx="0.5" />
+                  <rect x="6" y="11" width="3" height="3" rx="0.5" />
+                  <rect x="11" y="11" width="3" height="3" rx="0.5" />
+                </svg>
+              </button>
+              <button
+                onClick={() => setGridSize("medium")}
+                className={`p-2 ${gridSize === "medium" ? "bg-emerald-100 text-emerald-700" : "text-gray-400 hover:text-gray-600"}`}
+                title="Medium grid"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+                  <rect x="1" y="1" width="6" height="6" rx="1" />
+                  <rect x="9" y="1" width="6" height="6" rx="1" />
+                  <rect x="1" y="9" width="6" height="6" rx="1" />
+                  <rect x="9" y="9" width="6" height="6" rx="1" />
+                </svg>
+              </button>
+              <button
+                onClick={() => setGridSize("large")}
+                className={`p-2 ${gridSize === "large" ? "bg-emerald-100 text-emerald-700" : "text-gray-400 hover:text-gray-600"}`}
+                title="Large grid"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+                  <rect x="1" y="1" width="14" height="6" rx="1" />
+                  <rect x="1" y="9" width="14" height="6" rx="1" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -195,7 +244,7 @@ export default function BrowsePage() {
           </div>
         ) : (
           <>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className={`mt-8 grid ${gridClasses[gridSize]} gap-4`}
               {paginatedNfts.map((nft) => {
                 const tier = getRarityTier(nft.rarityScore);
                 return (
