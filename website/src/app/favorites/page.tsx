@@ -125,6 +125,17 @@ export default function FavoritesPage() {
                 Compare →
               </Link>
               <ShareCollection nftIds={favorites.map(f => f.id)} title="My Favorites" />
+              <button
+                onClick={() => {
+                  if (confirm(`Clear all ${favorites.length} favorites?`)) {
+                    favorites.forEach(f => removeFavorite(f.id));
+                    loadFavorites();
+                  }
+                }}
+                className="text-sm text-red-500 hover:text-red-600"
+              >
+                Clear all
+              </button>
             </div>
           )}
         </div>
