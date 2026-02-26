@@ -12,10 +12,11 @@ import TrackView from "@/components/TrackView";
 import CopyAddressButton from "@/components/CopyAddressButton";
 import SwipeHint from "@/components/SwipeHint";
 import LegendaryConfetti from "@/components/LegendaryConfetti";
-import { imageUrl, metadataUrl } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 import { getTraitIcon } from "@/lib/traitIcons";
 import mintedAssets from "@/lib/minted-assets.json";
+import traitManifest from "../../../../public/trait-manifest.json";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -33,14 +34,21 @@ interface NftMetadata {
   attributes: NftAttribute[];
 }
 
-async function getNftData(id: number): Promise<NftMetadata | null> {
-  try {
-    const res = await fetch(metadataUrl(id), { next: { revalidate: 3600 } });
-    if (!res.ok) return null;
-    return await res.json();
-  } catch {
-    return null;
-  }
+// Use local trait-manifest.json instead of fetching from IPFS (instant builds)
+function getNftData(id: number): NftMetadata | null {
+  const nft = traitManifest.find((n: { id: number }) => n.id === id);
+  if (!nft) return null;
+  
+  const traits = (nft as { id: number; traits: Record<string, string> }).traits;
+  return {
+    name: `DeClaw #${id}`,
+    description: `DeClaw #${id} - One of 1,000 unique claw-machine robots on Solana.`,
+    image: imageUrl(id),
+    attributes: Object.entries(traits).map(([trait_type, value]) => ({
+      trait_type,
+      value: value as string,
+    })),
+  };
 }
 
 function getAssetAddress(id: number): string | null {
@@ -56,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Not Found | DeClaw" };
   }
 
-  const metadata = await getNftData(nftId);
+  const metadata = getNftData(nftId);
   const title = `DeClaw #${nftId} | Claw Machine Robots on Solana`;
   const description = metadata?.description || `DeClaw #${nftId} - One of 1,000 unique claw-machine robots on Solana. View traits, rarity, and swap via MPL-404.`;
   const image = imageUrl(nftId);
@@ -100,7 +108,7 @@ export default async function DeclawPage({ params }: Props) {
     );
   }
 
-  const metadata = await getNftData(nftId);
+  const metadata = getNftData(nftId);
   const assetAddress = getAssetAddress(nftId);
   const image = imageUrl(nftId);
 
