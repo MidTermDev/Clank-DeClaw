@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getFavorites, removeFavorite } from "@/lib/favorites";
+import { getFavorites, removeFavorite, importFavorites, clearFavorites } from "@/lib/favorites";
 import { imageUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, TRAIT_WEIGHTS } from "@/lib/rarity";
 import ShareCollection from "@/components/ShareCollection";
@@ -141,10 +141,36 @@ export default function FavoritesPage() {
               >
                 ⬇️ Export
               </button>
+              <label className="text-sm text-gray-500 hover:text-gray-700 cursor-pointer" title="Import favorites from JSON">
+                ⬆️ Import
+                <input
+                  type="file"
+                  accept=".json"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      try {
+                        const data = JSON.parse(event.target?.result as string);
+                        const ids = data.map((n: { id: number }) => n.id).filter((id: number) => !isNaN(id));
+                        importFavorites(ids);
+                        loadFavorites();
+                        alert(`Imported ${ids.length} favorites!`);
+                      } catch {
+                        alert("Invalid file format");
+                      }
+                    };
+                    reader.readAsText(file);
+                    e.target.value = "";
+                  }}
+                />
+              </label>
               <button
                 onClick={() => {
                   if (confirm(`Clear all ${favorites.length} favorites?`)) {
-                    favorites.forEach(f => removeFavorite(f.id));
+                    clearFavorites();
                     loadFavorites();
                   }
                 }}

@@ -36,3 +36,14 @@ export function toggleFavorite(id: number): { favorites: number[]; isFavorite: b
     return { favorites: addFavorite(id), isFavorite: true };
   }
 }
+
+export function importFavorites(ids: number[]): number[] {
+  const current = getFavorites();
+  const merged = [...new Set([...current, ...ids])].filter(id => id >= 0 && id <= 999);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+  return merged;
+}
+
+export function clearFavorites(): void {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+}
