@@ -5,7 +5,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RobotLoader from "@/components/RobotLoader";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 
 interface TraitData {
   category: string;
@@ -203,7 +203,7 @@ export default function RarityPage() {
           {searchResult && (
             <Link href={`/declaw/${searchResult.id}`} className="mt-6 flex gap-6 rounded-lg p-2 -m-2 hover:bg-gray-100 transition-colors">
               <img
-                src={`${IPFS_GATEWAY}/${IMAGES_CID}/${searchResult.id}.png`}
+                src={imageUrl(searchResult.id)}
                 alt={`DeClaw #${searchResult.id}`}
                 className="h-32 w-32 rounded-lg"
               />
@@ -238,7 +238,7 @@ export default function RarityPage() {
                 <Link key={nft.id} href={`/declaw/${nft.id}`} className="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm hover:shadow-md hover:border-gray-200 transition-all">
                   <div className="relative">
                     <img
-                      src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
+                      src={imageUrl(nft.id)}
                       alt={`DeClaw #${nft.id}`}
                       className="aspect-square w-full object-cover"
                     />

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 
 interface SearchResult {
   id: number;
@@ -90,7 +90,7 @@ export default function SearchBar() {
               className="flex items-center gap-3 w-full px-3 py-2 hover:bg-gray-50 text-left group"
             >
               <img
-                src={`${IPFS_GATEWAY}/${IMAGES_CID}/${result.id}.png`}
+                src={imageUrl(result.id)}
                 alt={`DeClaw #${result.id}`}
                 className="w-10 h-10 rounded-lg object-cover group-hover:scale-110 transition-transform"
               />

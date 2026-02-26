@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, TRAIT_WEIGHTS } from "@/lib/rarity";
 import SearchBar from "@/components/SearchBar";
 import RobotLoader from "@/components/RobotLoader";
@@ -206,15 +206,10 @@ export default function BrowsePage() {
                   >
                     <div className="relative aspect-square bg-gray-100">
                       <img
-                        src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
+                        src={imageUrl(nft.id)}
                         alt={`DeClaw #${nft.id}`}
                         className="w-full h-full object-cover"
                         loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.onerror = null;
-                          target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23e5e7eb" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%239ca3af" font-size="14">%23${nft.id}</text></svg>`;
-                        }}
                       />
                     </div>
                     <div className="p-3">

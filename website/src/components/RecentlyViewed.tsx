@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getRecentlyViewed } from "@/lib/recentlyViewed";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 
 export default function RecentlyViewed() {
   const [recentIds, setRecentIds] = useState<number[]>([]);
@@ -28,7 +28,7 @@ export default function RecentlyViewed() {
           >
             <div className="w-12 h-12 rounded-lg overflow-hidden border border-gray-200 group-hover:border-gray-400 transition-colors">
               <img
-                src={`${IPFS_GATEWAY}/${IMAGES_CID}/${id}.png`}
+                src={imageUrl(id)}
                 alt={`DeClaw #${id}`}
                 className="w-full h-full object-cover"
                 loading="lazy"

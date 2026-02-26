@@ -13,7 +13,9 @@ export const CLAW_DECIMALS = 6;
 export const SWAP_AMOUNT = 1_000_000; // 1M CLAW per NFT
 
 export const IPFS_GATEWAY = "https://ipfs.io/ipfs";
-export const imageUrl = (id: number) => `${IPFS_GATEWAY}/${IMAGES_CID}/${id}.png`;
+// Local images for instant loading - fallback to IPFS if needed
+export const imageUrl = (id: number) => `/nfts/${id}.png`;
+export const imageUrlIPFS = (id: number) => `${IPFS_GATEWAY}/${IMAGES_CID}/${id}.png`;
 export const metadataUrl = (id: number) => `${IPFS_GATEWAY}/${METADATA_CID}/${id}.json`;
 
 export const GALLERY_IDS = [0, 7, 23, 42, 99, 128, 256, 333, 404, 500, 666, 777, 888, 999];

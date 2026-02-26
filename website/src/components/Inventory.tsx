@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useUserNfts } from "@/hooks/useUserNfts";
 import { useClawBalance } from "@/hooks/useClawBalance";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 
 function BackpackIcon() {
   return (
@@ -127,7 +127,7 @@ export default function Inventory() {
                         >
                           <div className="aspect-square rounded-lg overflow-hidden border-2 border-gray-100 group-hover:border-emerald-400 transition-colors">
                             <img
-                              src={`${IPFS_GATEWAY}/${IMAGES_CID}/${id}.png`}
+                              src={imageUrl(id)}
                               alt={nft.content.metadata.name}
                               className="w-full h-full object-cover"
                             />

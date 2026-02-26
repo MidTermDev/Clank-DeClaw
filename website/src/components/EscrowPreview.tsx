@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { fetchEscrowNfts, type DasAsset } from "@/lib/das";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 
 export default function EscrowPreview() {
   const [previewNfts, setPreviewNfts] = useState<number[]>([]);
@@ -51,15 +51,10 @@ export default function EscrowPreview() {
             className="w-12 h-12 rounded-lg overflow-hidden border border-white/20 hover:border-white/50 transition-colors"
           >
             <img
-              src={`${IPFS_GATEWAY}/${IMAGES_CID}/${id}.png`}
+              src={imageUrl(id)}
               alt={`DeClaw #${id}`}
               className="w-full h-full object-cover"
               loading="lazy"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.onerror = null;
-                target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23374151" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%239ca3af" font-size="12">%23${id}</text></svg>`;
-              }}
             />
           </Link>
         ))}

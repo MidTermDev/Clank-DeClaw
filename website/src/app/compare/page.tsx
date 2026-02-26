@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { IPFS_GATEWAY, IMAGES_CID, metadataUrl } from "@/lib/constants";
+import { imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, getTraitRarity } from "@/lib/rarity";
 
 interface NftData {
@@ -85,7 +85,7 @@ export default function ComparePage() {
       <div>
         <Link href={`/declaw/${nft.id}`}>
           <img
-            src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
+            src={imageUrl(nft.id)}
             alt={nft.name}
             className="aspect-square w-full rounded-xl object-cover hover:opacity-90 transition-opacity"
           />

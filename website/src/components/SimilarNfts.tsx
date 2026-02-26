@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, TRAIT_WEIGHTS } from "@/lib/rarity";
 
 interface SimilarNftsProps {
@@ -124,7 +124,7 @@ export default function SimilarNfts({ currentId, traits }: SimilarNftsProps) {
             >
               <div className="aspect-square bg-gray-50">
                 <img
-                  src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
+                  src={imageUrl(nft.id)}
                   alt={`DeClaw #${nft.id}`}
                   className="w-full h-full object-cover"
                   loading="lazy"

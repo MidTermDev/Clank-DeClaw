@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier } from "@/lib/rarity";
 
 interface NftData {
@@ -59,7 +59,7 @@ export default function NftOfTheDay() {
       <Link href={`/declaw/${nft.id}`} className="flex items-center gap-4 group">
         <div className="w-20 h-20 rounded-lg overflow-hidden border-2 border-amber-200 group-hover:border-amber-400 transition-colors">
           <img
-            src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
+            src={imageUrl(nft.id)}
             alt={`DeClaw #${nft.id}`}
             className="w-full h-full object-cover"
           />

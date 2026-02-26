@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { IPFS_GATEWAY, IMAGES_CID } from "@/lib/constants";
+import { imageUrl as getImageUrl } from "@/lib/constants";
 
 interface ShareButtonsProps {
   nftId: number;
@@ -30,8 +30,8 @@ export default function ShareButtons({ nftId }: ShareButtonsProps) {
   const handleDownload = async () => {
     setDownloading(true);
     try {
-      const imageUrl = `${IPFS_GATEWAY}/${IMAGES_CID}/${nftId}.png`;
-      const response = await fetch(imageUrl);
+      const imgUrl = getImageUrl(nftId);
+      const response = await fetch(imgUrl);
       const blob = await response.blob();
       const blobUrl = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
