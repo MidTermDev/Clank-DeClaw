@@ -45,7 +45,7 @@ export default function TraitsPage() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
+        <div className="flex flex-wrap justify-center gap-2 mb-4">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
@@ -62,6 +62,22 @@ export default function TraitsPage() {
               {cat}
             </button>
           ))}
+        </div>
+        
+        {/* Random button */}
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => {
+              const randomCat = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
+              const traits = Object.keys(TRAIT_WEIGHTS[randomCat] || {});
+              const randomTrait = traits[Math.floor(Math.random() * traits.length)];
+              setSelectedCategory(randomCat);
+              setSelectedTrait(randomTrait);
+            }}
+            className="px-4 py-2 rounded-full text-sm font-medium bg-purple-100 text-purple-700 hover:bg-purple-200 transition-colors"
+          >
+            🎲 Surprise me
+          </button>
         </div>
 
         {/* Trait Grid */}
