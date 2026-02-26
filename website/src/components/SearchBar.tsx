@@ -93,6 +93,11 @@ export default function SearchBar() {
                 src={imageUrl(result.id)}
                 alt={`DeClaw #${result.id}`}
                 className="w-10 h-10 rounded-lg object-cover group-hover:scale-110 transition-transform"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect fill="%23e5e7eb" width="512" height="512"/><text x="256" y="256" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="48" fill="%236b7280">%23${result.id}</text></svg>`;
+                }}
               />
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900">DeClaw #{result.id}</p>

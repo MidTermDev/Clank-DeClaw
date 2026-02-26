@@ -130,6 +130,11 @@ export default function Inventory() {
                               src={imageUrl(id)}
                               alt={nft.content.metadata.name}
                               className="w-full h-full object-cover"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                target.onerror = null;
+                                target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect fill="%23e5e7eb" width="512" height="512"/><text x="256" y="256" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="48" fill="%236b7280">%23${id}</text></svg>`;
+                              }}
                             />
                           </div>
                           <p className="mt-1 text-xs text-center text-gray-600 group-hover:text-emerald-600">

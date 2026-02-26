@@ -228,6 +228,11 @@ export default function SwapPanel() {
                           src={imageUrl(nftId)}
                           alt={nft.content.metadata.name}
                           className="h-full w-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.onerror = null;
+                            target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect fill="%23e5e7eb" width="512" height="512"/><text x="256" y="256" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="48" fill="%236b7280">%23${nftId}</text></svg>`;
+                          }}
                         />
                       </div>
                       <p className="truncate px-1 py-1 text-xs text-gray-600">
@@ -289,6 +294,11 @@ export default function SwapPanel() {
                   src={imageUrl(capturedNft.id)}
                   alt={`DeClaw #${capturedNft.id}`}
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect fill="%2310b981" width="512" height="512"/><text x="256" y="256" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="48" fill="%23ffffff">%23${capturedNft.id}</text></svg>`;
+                  }}
                 />
               </div>
               <h3 className="mt-4 text-2xl font-bold text-gray-900 text-center">

@@ -206,6 +206,11 @@ export default function RarityPage() {
                 src={imageUrl(searchResult.id)}
                 alt={`DeClaw #${searchResult.id}`}
                 className="h-32 w-32 rounded-lg"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect fill="%23e5e7eb" width="512" height="512"/><text x="256" y="256" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="48" fill="%236b7280">%23${searchResult.id}</text></svg>`;
+                }}
               />
               <div className="flex-1">
                 <div className="flex items-baseline gap-3">
@@ -241,6 +246,11 @@ export default function RarityPage() {
                       src={imageUrl(nft.id)}
                       alt={`DeClaw #${nft.id}`}
                       className="aspect-square w-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.onerror = null;
+                        target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect fill="%23e5e7eb" width="512" height="512"/><text x="256" y="256" text-anchor="middle" dominant-baseline="middle" font-family="monospace" font-size="48" fill="%236b7280">%23${nft.id}</text></svg>`;
+                      }}
                     />
                     <span className="absolute left-2 top-2 rounded bg-black/70 px-2 py-0.5 text-xs font-bold text-white">
                       #{i + 1}
