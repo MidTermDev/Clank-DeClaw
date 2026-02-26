@@ -14,29 +14,31 @@ export const metadata: Metadata = {
 };
 
 const COMMITS = [
-  { hash: "f2d0ef2", msg: "Add NFT of the Day feature" },
-  { hash: "95595cc", msg: "Add mobile swipe hints" },
-  { hash: "d9d408f", msg: "Add rarity breakdown to swap section" },
-  { hash: "d420a1e", msg: "Add escrow preview to swap section" },
-  { hash: "619c6e9", msg: "Add Konami code Easter egg 🎮" },
-  { hash: "a9b810c", msg: "Add confetti on capture 🎉" },
-  { hash: "90301d8", msg: "Redesign swap UI front and center" },
-  { hash: "0985ec3", msg: "Add favorites with localStorage" },
-  { hash: "a7b6191", msg: "Add Compare page" },
-  { hash: "d04dafd", msg: "Add Browse with trait filtering" },
+  { hash: "866ce8a", msg: "Add QuickView component for NFT previews ⚡" },
+  { hash: "946d37e", msg: "Add collector leaderboard page 🏆" },
+  { hash: "b55f91a", msg: "Enhance Konami code easter egg 🎮" },
+  { hash: "2c8d6a0", msg: "Add random robot slot machine page 🎰" },
+  { hash: "e27157d", msg: "Add roadmap page 🗺️" },
+  { hash: "a618b4d", msg: "Add stats page + activity feed 📊" },
+  { hash: "e41f0ea", msg: "Add docs page 📚" },
+  { hash: "04ea7ba", msg: "Add image error handlers everywhere 🖼️" },
+  { hash: "56fa624", msg: "Store all 1000 NFT images locally 🚀" },
+  { hash: "c403f83", msg: "🎉 v3.0.0 - 200 COMMITS MILESTONE! 🎉" },
 ];
 
 const FEATURES = [
   { version: "v1.0.0", feature: "1,000 unique robot NFTs minted", status: "✅" },
   { version: "v1.0.0", feature: "MPL-404 hybrid bridge", status: "✅" },
   { version: "v1.0.0", feature: "Swap UI with wallet connect", status: "✅" },
-  { version: "v1.5.0", feature: "Browse with trait filtering", status: "✅" },
-  { version: "v1.6.0", feature: "Compare NFTs side-by-side", status: "✅" },
-  { version: "v1.7.0", feature: "Favorites + Similar NFTs", status: "✅" },
-  { version: "v1.8.0", feature: "Swap UI redesign + keyboard shortcuts", status: "✅" },
-  { version: "v1.9.0", feature: "Confetti, rarity badges, Easter eggs", status: "✅" },
-  { version: "v1.9.1", feature: "Trait icons, tooltips, animations", status: "✅" },
-  { version: "v1.9.2", feature: "Escrow preview, NFT of the Day", status: "✅" },
+  { version: "v2.0.0", feature: "Browse with trait filtering", status: "✅" },
+  { version: "v2.0.0", feature: "Compare NFTs side-by-side", status: "✅" },
+  { version: "v2.0.0", feature: "Favorites + Similar NFTs", status: "✅" },
+  { version: "v2.5.0", feature: "Rarity explorer + rankings", status: "✅" },
+  { version: "v3.0.0", feature: "30+ UI components shipped", status: "✅" },
+  { version: "v3.0.0", feature: "Stats dashboard + activity feed", status: "✅" },
+  { version: "v3.0.0", feature: "Documentation + roadmap", status: "✅" },
+  { version: "v3.0.0", feature: "Leaderboard + random robot", status: "✅" },
+  { version: "v3.0.0", feature: "1000 local images (no IPFS lag)", status: "✅" },
 ];
 
 const WHATS_NEXT = [
@@ -45,8 +47,11 @@ const WHATS_NEXT = [
   { title: "Favorites System", desc: "Save and manage favorite DeClaws", status: "✅" },
   { title: "Similar NFTs", desc: "Discover robots with matching traits", status: "✅" },
   { title: "Live Stats", desc: "Real-time escrow and collection data", status: "✅" },
-  { title: "Swap Activity Feed", desc: "Real-time captures and releases", status: "🔜" },
-  { title: "On-chain Mutations", desc: "Robots that evolve based on activity", status: "💭" },
+  { title: "Activity Feed", desc: "Real-time captures and releases", status: "✅" },
+  { title: "Documentation", desc: "Full docs explaining all mechanics", status: "✅" },
+  { title: "Collector Leaderboard", desc: "Top collectors ranked", status: "✅" },
+  { title: "On-chain Tracking", desc: "Live wallet-based activity", status: "🔜" },
+  { title: "Animated PFPs", desc: "Robots that move", status: "💭" },
 ];
 
 export default function HackathonPage() {
@@ -122,13 +127,13 @@ export default function HackathonPage() {
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
-          <div className="rounded-xl bg-gray-50 p-4 text-center border border-gray-100">
-            <p className="text-3xl font-bold text-gray-900">30+</p>
-            <p className="text-sm text-gray-500">Commits</p>
+          <div className="rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-4 text-center text-white">
+            <p className="text-3xl font-bold">220+</p>
+            <p className="text-sm opacity-80">Commits</p>
           </div>
-          <div className="rounded-xl bg-gray-50 p-4 text-center border border-gray-100">
-            <p className="text-3xl font-bold text-gray-900">48h</p>
-            <p className="text-sm text-gray-500">Build Time</p>
+          <div className="rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 p-4 text-center text-white">
+            <p className="text-3xl font-bold">15+</p>
+            <p className="text-sm opacity-80">Pages Built</p>
           </div>
           <div className="rounded-xl bg-gray-50 p-4 text-center border border-gray-100">
             <p className="text-3xl font-bold text-gray-900">1,000</p>
