@@ -8,6 +8,7 @@ import {
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { createSignerFromWalletAdapter } from "@metaplex-foundation/umi-signer-wallet-adapters";
 import { useUmiStore } from "@/hooks/useUmiStore";
+import { ToastProvider } from "./Toast";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 function UmiSync({ children }: { children: ReactNode }) {
@@ -30,7 +31,9 @@ export default function Providers({ children }: { children: ReactNode }) {
   return (
     <WalletProvider wallets={[]} autoConnect>
       <WalletModalProvider>
-        <UmiSync>{children}</UmiSync>
+        <ToastProvider>
+          <UmiSync>{children}</UmiSync>
+        </ToastProvider>
       </WalletModalProvider>
     </WalletProvider>
   );

@@ -2,8 +2,14 @@
 
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 
+interface Toast {
+  id: number;
+  message: string;
+  type: "success" | "error" | "info";
+}
+
 interface ToastContextType {
-  showToast: (message: string) => void;
+  showToast: (message: string, type?: Toast["type"]) => void;
 }
 
 const ToastContext = createContext<ToastContextType | null>(null);
@@ -11,34 +17,73 @@ const ToastContext = createContext<ToastContextType | null>(null);
 export function useToast() {
   const context = useContext(ToastContext);
   if (!context) {
-    // Fallback if not wrapped in provider
-    return { showToast: (message: string) => console.log(message) };
+    throw new Error("useToast must be used within ToastProvider");
   }
   return context;
 }
 
-interface ToastProviderProps {
-  children: ReactNode;
-}
+export function ToastProvider({ children }: { children: ReactNode }) {
+  const [toasts, setToasts] = useState<Toast[]>([]);
+  let toastId = 0;
 
-export function ToastProvider({ children }: ToastProviderProps) {
-  const [toast, setToast] = useState<string | null>(null);
-
-  const showToast = useCallback((message: string) => {
-    setToast(message);
-    setTimeout(() => setToast(null), 2500);
+  const showToast = useCallback((message: string, type: Toast["type"] = "success") => {
+    const id = ++toastId;
+    setToasts((prev) => [...prev, { id, message, type }]);
+    
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 3000);
   }, []);
+
+  const removeToast = (id: number) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const typeStyles = {
+    success: "bg-emerald-600 text-white",
+    error: "bg-red-600 text-white",
+    info: "bg-gray-800 text-white",
+  };
+
+  const typeIcons = {
+    success: "✓",
+    error: "✕",
+    info: "ℹ",
+  };
 
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {toast && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-fade-in">
-          <div className="rounded-lg bg-gray-900 px-4 py-2 text-sm text-white shadow-lg">
-            {toast}
+      
+      {/* Toast container */}
+      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
+        {toasts.map((toast) => (
+          <div
+            key={toast.id}
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg animate-slide-up ${typeStyles[toast.type]}`}
+            onClick={() => removeToast(toast.id)}
+          >
+            <span className="text-lg">{typeIcons[toast.type]}</span>
+            <span className="text-sm font-medium">{toast.message}</span>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(1rem);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-slide-up {
+          animation: slide-up 0.2s ease-out;
+        }
+      `}</style>
     </ToastContext.Provider>
   );
 }
