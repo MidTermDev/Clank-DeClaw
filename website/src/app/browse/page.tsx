@@ -204,12 +204,17 @@ export default function BrowsePage() {
                     href={`/declaw/${nft.id}`}
                     className="group overflow-hidden rounded-xl border border-gray-100 bg-white hover:border-gray-200 hover:shadow-md transition-all"
                   >
-                    <div className="relative aspect-square bg-gray-50">
+                    <div className="relative aspect-square bg-gray-100">
                       <img
                         src={`${IPFS_GATEWAY}/${IMAGES_CID}/${nft.id}.png`}
                         alt={`DeClaw #${nft.id}`}
                         className="w-full h-full object-cover"
                         loading="lazy"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null;
+                          target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23e5e7eb" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%239ca3af" font-size="14">%23${nft.id}</text></svg>`;
+                        }}
                       />
                     </div>
                     <div className="p-3">

@@ -55,6 +55,11 @@ export default function EscrowPreview() {
               alt={`DeClaw #${id}`}
               className="w-full h-full object-cover"
               loading="lazy"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null;
+                target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23374151" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%239ca3af" font-size="12">%23${id}</text></svg>`;
+              }}
             />
           </Link>
         ))}

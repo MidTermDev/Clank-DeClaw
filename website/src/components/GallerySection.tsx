@@ -90,6 +90,11 @@ export default function GallerySection() {
                 alt={nft.name}
                 className="w-full h-full object-cover"
                 loading="lazy"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23e5e7eb" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="%239ca3af" font-size="14">%23${nft.id}</text></svg>`;
+                }}
               />
               {/* Rarity badge */}
               <div 
