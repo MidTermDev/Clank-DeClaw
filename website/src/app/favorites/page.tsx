@@ -127,6 +127,22 @@ export default function FavoritesPage() {
               <ShareCollection nftIds={favorites.map(f => f.id)} title="My Favorites" />
               <button
                 onClick={() => {
+                  const data = JSON.stringify(favorites, null, 2);
+                  const blob = new Blob([data], { type: "application/json" });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = `declaw-favorites-${Date.now()}.json`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                }}
+                className="text-sm text-gray-500 hover:text-gray-700"
+                title="Export favorites as JSON"
+              >
+                ⬇️ Export
+              </button>
+              <button
+                onClick={() => {
                   if (confirm(`Clear all ${favorites.length} favorites?`)) {
                     favorites.forEach(f => removeFavorite(f.id));
                     loadFavorites();
