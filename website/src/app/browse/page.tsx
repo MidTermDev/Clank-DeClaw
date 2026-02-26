@@ -244,7 +244,7 @@ export default function BrowsePage() {
           </div>
         ) : (
           <>
-            <div className={`mt-8 grid ${gridClasses[gridSize]} gap-4`}
+            <div className={`mt-8 grid ${gridClasses[gridSize]} gap-4`}>
               {paginatedNfts.map((nft) => {
                 const tier = getRarityTier(nft.rarityScore);
                 return (
