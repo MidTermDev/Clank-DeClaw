@@ -128,7 +128,7 @@ export default function HackathonPage() {
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 p-4 text-center text-white">
-            <p className="text-3xl font-bold">220+</p>
+            <p className="text-3xl font-bold">250</p>
             <p className="text-sm opacity-80">Commits</p>
           </div>
           <div className="rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 p-4 text-center text-white">
