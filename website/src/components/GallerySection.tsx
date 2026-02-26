@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+// Using img instead of next/image for IPFS compatibility
 import Link from "next/link";
 import { GALLERY_IDS, imageUrl, metadataUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier } from "@/lib/rarity";
@@ -84,13 +84,12 @@ export default function GallerySection() {
             onClick={() => setSelectedNft(nft)}
             className="nft-card shine-effect overflow-hidden rounded-xl border border-gray-100 bg-white text-left transition-all hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-100"
           >
-            <div className="relative aspect-square">
-              <Image
+            <div className="relative aspect-square bg-gray-100">
+              <img
                 src={nft.image}
                 alt={nft.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                className="w-full h-full object-cover"
+                loading="lazy"
               />
               {/* Rarity badge */}
               <div 
@@ -132,12 +131,11 @@ export default function GallerySection() {
             className="max-h-[90vh] w-full max-w-md overflow-auto rounded-xl bg-white p-6 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-square overflow-hidden rounded-lg">
-              <Image
+            <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
+              <img
                 src={selectedNft.image}
                 alt={selectedNft.name}
-                fill
-                className="object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
             <h3 className="mt-4 text-xl font-bold text-gray-900">
