@@ -27,7 +27,7 @@ export default function Footer() {
               <p className="text-xs text-gray-400">Open Source</p>
             </div>
             <div>
-              <p className="text-2xl font-bold text-amber-400">200</p>
+              <p className="text-2xl font-bold text-amber-400">225+</p>
               <p className="text-xs text-gray-400">Commits 🎉</p>
             </div>
           </div>
@@ -158,6 +158,16 @@ export default function Footer() {
                   className="text-gray-500 underline underline-offset-2 hover:text-gray-700"
                 >
                   MPL-404 Docs
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/MidTermDev/Clank-DeClaw/issues/new"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 underline underline-offset-2 hover:text-gray-700"
+                >
+                  Report Bug / Feedback
                 </a>
               </li>
             </ul>
