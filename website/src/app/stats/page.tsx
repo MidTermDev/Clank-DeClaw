@@ -125,7 +125,7 @@ export default function StatsPage() {
         {/* Rarity Distribution */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Rarity Distribution</h2>
-          <div className="grid gap-4 sm:grid-cols-5">
+          <div className="grid gap-4 sm:grid-cols-5 mb-6">
             {rarityStats.map((stat) => (
               <div key={stat.tier} className="rounded-xl bg-gray-50 p-4 border border-gray-100 text-center">
                 <p className={`text-2xl font-bold ${stat.color}`}>{stat.count}</p>
@@ -133,6 +133,32 @@ export default function StatsPage() {
                 <p className="text-xs text-gray-400">{(stat.count / 10).toFixed(1)}%</p>
               </div>
             ))}
+          </div>
+          {/* Visual bar chart */}
+          <div className="rounded-xl bg-gray-50 p-4 border border-gray-100">
+            <div className="flex h-32 items-end gap-2">
+              {rarityStats.map((stat) => {
+                const maxCount = Math.max(...rarityStats.map(s => s.count));
+                const height = (stat.count / maxCount) * 100;
+                const colors: Record<string, string> = {
+                  Legendary: "bg-amber-500",
+                  Epic: "bg-purple-500",
+                  Rare: "bg-blue-500",
+                  Uncommon: "bg-emerald-500",
+                  Common: "bg-gray-400",
+                };
+                return (
+                  <div key={stat.tier} className="flex-1 flex flex-col items-center gap-1">
+                    <span className="text-xs text-gray-500">{stat.count}</span>
+                    <div
+                      className={`w-full rounded-t-lg ${colors[stat.tier]} transition-all duration-500`}
+                      style={{ height: `${height}%` }}
+                    />
+                    <span className="text-xs text-gray-600 mt-1">{stat.tier.slice(0, 3)}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
