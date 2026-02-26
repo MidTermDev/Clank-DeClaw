@@ -60,6 +60,7 @@ const NAV_LINKS = [
 ];
 
 const MORE_LINKS = [
+  { href: "/docs", label: "Docs" },
   { href: "/favorites", label: "Favorites" },
   { href: "/rarity", label: "Rarity" },
   { href: "/agent", label: "Agent" },
