@@ -2,30 +2,29 @@
 
 import { useState } from "react";
 
-export default function ShareCollection() {
+interface ShareCollectionProps {
+  nftIds: number[];
+  title?: string;
+}
+
+export default function ShareCollection({ nftIds, title = "My DeClaw Collection" }: ShareCollectionProps) {
   const [copied, setCopied] = useState(false);
 
-  const handleShare = async () => {
-    const url = "https://declaws.com";
-    const text = "Check out DeClaw — 1,000 claw-machine robot NFTs on Solana, fully open source 🤖";
+  const shareUrl = typeof window !== "undefined" 
+    ? `${window.location.origin}/compare?nfts=${nftIds.join(",")}`
+    : "";
 
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "DeClaw", text, url });
-        return;
-      } catch {
-        // Fall through to copy
-      }
-    }
+  const shareText = `Check out ${title} (${nftIds.length} DeClaws)`;
 
+  const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(`${text}\n${url}`);
+      await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // Fallback
       const input = document.createElement("input");
-      input.value = `${text} ${url}`;
+      input.value = shareUrl;
       document.body.appendChild(input);
       input.select();
       document.execCommand("copy");
@@ -35,16 +34,32 @@ export default function ShareCollection() {
     }
   };
 
+  const shareToX = () => {
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}&via=ClankDeClaw`;
+    window.open(url, "_blank");
+  };
+
+  if (nftIds.length === 0) return null;
+
   return (
-    <button
-      onClick={handleShare}
-      className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-        copied
-          ? "bg-emerald-100 text-emerald-700"
-          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-      }`}
-    >
-      {copied ? "✓ Copied!" : "🔗 Share Collection"}
-    </button>
+    <div className="flex items-center gap-2">
+      <button
+        onClick={shareToX}
+        className="flex items-center gap-2 rounded-lg bg-black px-3 py-2 text-sm font-medium text-white hover:bg-gray-800 transition-colors"
+      >
+        <span>𝕏</span>
+        <span>Share</span>
+      </button>
+      <button
+        onClick={copyLink}
+        className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+          copied 
+            ? "bg-emerald-100 text-emerald-700" 
+            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+        }`}
+      >
+        {copied ? "✓ Copied!" : "🔗 Copy Link"}
+      </button>
+    </div>
   );
 }

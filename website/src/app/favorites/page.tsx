@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { getFavorites, removeFavorite } from "@/lib/favorites";
 import { imageUrl } from "@/lib/constants";
 import { calculateRarityScore, getRarityTier, TRAIT_WEIGHTS } from "@/lib/rarity";
+import ShareCollection from "@/components/ShareCollection";
 
 interface FavoriteNft {
   id: number;
@@ -123,6 +124,7 @@ export default function FavoritesPage() {
               >
                 Compare →
               </Link>
+              <ShareCollection nftIds={favorites.map(f => f.id)} title="My Favorites" />
             </div>
           )}
         </div>
